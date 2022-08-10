@@ -18,10 +18,10 @@ export class API {
   async patch(route: Route, data: any) {
     return await this.routes[route].update(data);
   }
-  //
-  // async delete(route: Route, id: number) {
-  //   return await this.routes[route].read(id);
-  // }
+
+  async delete(route: Route, ids: number | number[]) {
+    return await this.routes[route].delete(ids);
+  }
 }
 
 export default new API();
