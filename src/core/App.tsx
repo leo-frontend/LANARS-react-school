@@ -1,15 +1,10 @@
 import './App.scss';
-import React, { useEffect } from 'react';
-import Storage from './services/Storage';
+import React from 'react';
+
+/* eslint no-console: 0 */
 
 const App = () => {
-  const title = 'LANARS';
-
-  useEffect(() => {
-    setTimeout(() => {
-      console.log(Storage.db);
-    }, 1000);
-  });
+  const title = 'LANARS react school';
 
   return (
     <div className="App">

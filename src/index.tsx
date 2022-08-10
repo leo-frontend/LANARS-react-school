@@ -3,15 +3,21 @@ import ReactDOM from 'react-dom';
 import './styles/styles.scss';
 import App from './core/App';
 import reportWebVitals from './reportWebVitals';
+import Storage from 'core/services/back-end/Storage';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+(async () => {
+  await Storage.createObjectStore(['albums']);
+  ReactDOM.render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>,
+    document.getElementById('root'),
+  );
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+  reportWebVitals();
+})();
+
+

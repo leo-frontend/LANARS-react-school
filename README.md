@@ -23,12 +23,6 @@
 └── tslint.json            # linter with codelyzer
 ```
 
-## Domains:
-* [DEV - https://dev.example.com](https://dev.example.com)
-* [STAGE - https://stage.example.com](https://stage.example.com)
-* [PROD - http://example.com](http://example.com)
-
----
 
 # Development server
 
