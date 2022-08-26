@@ -12,11 +12,11 @@ export abstract class BackEndAbstract {
     this.tableName = tableName;
   }
 
-  async create<T>(data: T): Promise<T> {
+  async create<T>(data: T, query: object): Promise<T> {
     return Storage.putValue(this.tableName, data);
   }
 
-  async read<T, I extends number | undefined>(id?: I): Promise<I extends number ? T : T[]> {
+  async read<T, I extends number | undefined>(id?: I, query?: object): Promise<I extends number ? T : T[]> {
     if (id) {
       return Storage.getValue('albums', id);
     }
@@ -24,11 +24,11 @@ export abstract class BackEndAbstract {
     return Storage.getAllValue('albums');
   }
 
-  async update<T>(data: T): Promise<T> {
+  async update<T>(data: T, query: object): Promise<T> {
     return Storage.putValue('albums', data);
   }
 
-  async delete(ids: number | number[]): Promise<any> {
+  async delete(ids: number | number[], query: object): Promise<any> {
     if (typeof ids === 'number') {
       return Storage.deleteValue('albums', ids);
     }

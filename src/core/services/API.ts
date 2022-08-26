@@ -1,26 +1,36 @@
 /* eslint no-console: 0 */  // --> OFF
 import {BackEndAbstract, Route} from './back-end/api-classes/BackEndAbstarct';
 import { Album } from './back-end/api-classes';
+import * as query from 'query-string';
 
 export class API {
   private routes: {[key in Route]: BackEndAbstract} = {
     '/api/albums': new Album('/api/albums', 'albums'),
   };
 
-  async put(route: Route, data: any) {
-    return await this.routes[route].create(data);
+  async put(path: string, data: any) {
+    const [route, query] = this.getParams(path);
+    return await this.routes[route].create(data, query);
   }
 
-  async get(route: Route, id?: number) {
-    return await this.routes[route].read(id);
+  async get(path: string, id?: number) {
+    const [route, query] = this.getParams(path);
+    return await this.routes[route].read(id, query);
   }
 
-  async patch(route: Route, data: any) {
-    return await this.routes[route].update(data);
+  async patch(path: string, data: any) {
+    const [route, query] = this.getParams(path);
+    return await this.routes[route].update(data, query);
   }
 
-  async delete(route: Route, ids: number | number[]) {
-    return await this.routes[route].delete(ids);
+  async delete(path: string, ids: number | number[]) {
+    const [route, query] = this.getParams(path);
+    return await this.routes[route].delete(ids, query);
+  }
+
+  private getParams(route: string): [Route, Object] {
+    const split = route.split('?');
+    return [split[0] as Route, query.parse(split[1])];
   }
 }
 
