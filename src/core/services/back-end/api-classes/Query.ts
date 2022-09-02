@@ -9,7 +9,7 @@ export class Query {
   constructor(query: any) {
     this.limit = +query.limit || this.limit;
     this.offset = +query.offset || this.offset;
-    this.sortBy = query.offset || this.sortBy;
+    this.sortBy = query.sortBy || this.sortBy;
     this.date = new Date(query.date) || this.date;
     this.search = query.search || this.search;
     this.ids = query.ids?.map((value: string | number) => +value) || this.ids;
