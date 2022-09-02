@@ -1,4 +1,6 @@
+import { EntityAbstract } from 'shared/entities/EntityAbstract';
 import Storage from '../Storage';
+import { Query } from './Query';
 
 export type Route = '/api/albums';
 export type Tablename = 'albums';
@@ -12,24 +14,25 @@ export abstract class BackEndAbstract {
     this.tableName = tableName;
   }
 
-  async create<T>(data: T, query?: object): Promise<T> {
-    if (query) {}
+  async create<T>(data: T): Promise<T> {
     return Storage.putValue(this.tableName, data);
   }
 
-  async read<T, I extends number | undefined>(id?: I, query?: object): Promise<I extends number ? T : T[]> {
-    if (query) {}
-
+  async read<T, I extends number | undefined>(id?: I, query?: Query): Promise<I extends number ? T : T[]> {
     if (id) {
       return Storage.getValue(this.tableName, id);
+    }
+
+    if (query?.ids) {
+      const values = (await Storage.getAllValue(this.tableName))?.filter((value: EntityAbstract) => query?.ids?.includes(value.id));
+      // eslint-disable-next-line no-console
+      console.log(values, query);
     }
 
     return Storage.getAllValue(this.tableName);
   }
 
-  async update<T>(data: T, query?: object): Promise<T> {
-    if (query) {}
-
+  async update<T>(data: T): Promise<T> {
     return Storage.putValue(this.tableName, data);
   }
 
