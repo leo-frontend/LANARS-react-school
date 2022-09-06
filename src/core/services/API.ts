@@ -4,10 +4,12 @@ import { Album } from './back-end/api-classes';
 import * as queryString from 'query-string';
 import { ServerError } from './back-end/api-classes/ServerError';
 import { Query } from './back-end/api-classes/Query';
+import { Video } from './back-end/api-classes/Video';
 
 export class API {
   private routes: {[key in Route]: BackEndAbstract} = {
-    '/api/albums': new Album('/api/albums', 'albums'),
+    '/api/albums': new Album(),
+    '/api/videos': new Video(),
   };
 
   async put(path: string, data: any) {
@@ -21,7 +23,7 @@ export class API {
     return await this.routes[route]?.create(data);
   }
 
-  async get(path: string, id?: number) {
+  async get(path: string) {
     const [route, query] = this.getParams(path);
 
     try {
@@ -31,7 +33,7 @@ export class API {
     }
 
     console.log(query);
-    return await this.routes[route]?.read(id, new Query(query));
+    return await this.routes[route]?.read(new Query(query));
   }
 
   async patch(path: string, data: any) {
@@ -44,14 +46,14 @@ export class API {
     return await this.routes[route]?.update(data);
   }
 
-  async delete(path: string, ids: number | number[]) {
+  async delete(path: string) {
     const [route, query] = this.getParams(path);
     try {
       await this.notFound(route);
     } catch (error) {
       return this.notFound(route);
     }
-    return await this.routes[route]?.delete(ids, new Query(query));
+    return await this.routes[route]?.delete(new Query(query));
   }
 
   private getParams(route: string): [Route, Object] {
