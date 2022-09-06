@@ -1,10 +1,10 @@
 export class Query {
-  limit?: number = 20;
-  offset?: number = 0;
+  limit: number = 20;
+  offset: number = 0;
   sortBy?: string = '';
   date?: Date | null = null;
   search?: string = '';
-  ids?: number[] = [];
+  ids: number[] = [];
 
   constructor(query: any) {
     this.limit = +query.limit || this.limit;
