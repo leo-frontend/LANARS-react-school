@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './styles/styles.scss';
-import App from './core/App';
+import App from './core/App.jsx';
 import reportWebVitals from './reportWebVitals';
 import Storage from 'core/services/back-end/Storage';
 
 (async () => {
-  await Storage.createObjectStore(['albums']);
+  await Storage.createObjectStore(['albums', 'videos']);
   ReactDOM.render(
     <React.StrictMode>
       <App />
