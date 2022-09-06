@@ -1,6 +1,5 @@
 import './App.scss';
-import React, {useEffect} from 'react';
-import API from './services/API';
+import React from 'react';
 
 const App = () => {
   const title = 'LANARS react school';
