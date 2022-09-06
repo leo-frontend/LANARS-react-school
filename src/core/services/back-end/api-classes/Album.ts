@@ -1,8 +1,9 @@
-import { BackEndAbstract, Tablename } from './BackEndAbstarct';
-import { Route } from './BackEndAbstarct';
+import { BackEndAbstract } from './BackEndAbstarct';
 
 export class Album extends BackEndAbstract {
-  constructor(route: Route, tableName: Tablename) {
-    super(route, tableName);
+  route = '/api/albums' as const;
+  tableName = 'albums' as const;
+  constructor() {
+    super();
   }
 }
