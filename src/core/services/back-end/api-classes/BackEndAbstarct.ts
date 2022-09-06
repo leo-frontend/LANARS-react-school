@@ -7,8 +7,9 @@ export type Route = '/api/albums' | '/api/videos';
 export type Tablename = 'albums' | 'videos';
 
 export abstract class BackEndAbstract {
-  abstract route: Route;
+  abstract readonly route: Route;
   abstract readonly tableName: Tablename;
+  abstract readonly requiredFields: string[];
 
   constructor() {}
 
@@ -48,4 +49,5 @@ export abstract class BackEndAbstract {
       }),
     );
   }
+  abstract validate(data: object): void;
 }

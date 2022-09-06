@@ -1,9 +1,29 @@
+import { ServerError } from '.';
 import { BackEndAbstract } from './BackEndAbstarct';
 
 export class Video extends BackEndAbstract {
-  route = '/api/videos' as const;
-  tableName = 'videos' as const;
+  readonly requiredFields = ['title', 'description', 'url', 'likes', 'date', 'duration'];
+  readonly route = '/api/videos';
+  readonly tableName = 'videos';
+
   constructor() {
     super();
+  }
+
+  validate(data: any) {
+    for (const key of this.requiredFields) {
+      if (!data[key]) {
+        throw new ServerError(400, `Property "${key}" is required`);
+      }
+    }
+
+    for (const key of Object.keys(data)) {
+      if (!this.requiredFields.includes(key)) {
+        throw new ServerError(
+          400,
+          `Unknown property "${key}". You can only use one of the following: "${this.requiredFields.join('", "')}"`,
+        );
+      }
+    }
   }
 }

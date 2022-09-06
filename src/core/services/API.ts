@@ -1,10 +1,7 @@
 /* eslint no-console: 0 */  // --> OFF
 import {BackEndAbstract, Route} from './back-end/api-classes/BackEndAbstarct';
-import { Album } from './back-end/api-classes';
 import * as queryString from 'query-string';
-import { ServerError } from './back-end/api-classes/ServerError';
-import { Query } from './back-end/api-classes/Query';
-import { Video } from './back-end/api-classes/Video';
+import { Album, Video, Query, ServerError } from './back-end/api-classes';
 
 export class API {
   private routes: {[key in Route]: BackEndAbstract} = {
@@ -15,9 +12,9 @@ export class API {
   async put(path: string, data: any) {
     const [route] = this.getParams(path);
     try {
-      await this.notFound(route);
+      await this.errorRequest(route, data);
     } catch (error) {
-      return this.getParams(route);
+      return this.errorRequest(route, data);
     }
 
     return await this.routes[route]?.create(data);
@@ -27,9 +24,9 @@ export class API {
     const [route, query] = this.getParams(path);
 
     try {
-      await this.notFound(route);
+      await this.errorRequest(route);
     } catch (error) {
-      return this.notFound(route);
+      return this.errorRequest(route);
     }
 
     console.log(query);
@@ -39,9 +36,12 @@ export class API {
   async patch(path: string, data: any) {
     const [route] = this.getParams(path);
     try {
-      await this.notFound(route);
+      if (!data.id) {
+        throw new ServerError(400, 'Property "id" is required');
+      }
+      await this.errorRequest(route, data);
     } catch (error) {
-      return this.notFound(route);
+      return this.errorRequest(route, data);
     }
     return await this.routes[route]?.update(data);
   }
@@ -49,9 +49,9 @@ export class API {
   async delete(path: string) {
     const [route, query] = this.getParams(path);
     try {
-      await this.notFound(route);
+      await this.errorRequest(route);
     } catch (error) {
-      return this.notFound(route);
+      return this.errorRequest(route);
     }
     return await this.routes[route]?.delete(new Query(query));
   }
@@ -61,12 +61,15 @@ export class API {
     return [split[0] as Route, queryString.parse(split[1], {arrayFormat: 'comma'})];
   }
 
-  private notFound(route: Route): Promise<boolean> {
+  private errorRequest(route: Route, data?: any): Promise<boolean> {
     return new Promise(((resolve, reject) => {
       if (!this.routes[route]) {
         reject(new ServerError(404, 'Not found'));
-        throw new Error('Not found');
+        throw new ServerError(404, 'Not found');
       }
+
+      this.routes[route].validate(data);
+
       resolve(true);
     }));
   }
