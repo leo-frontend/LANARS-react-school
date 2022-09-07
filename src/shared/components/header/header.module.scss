@@ -1,0 +1,30 @@
+@use './src/styles/mixins' as mixins;
+@use './src/styles/variables' as vars;
+
+.header {
+  position: sticky;
+  height: 72px;
+  border-bottom: 1px solid vars.$blue;
+  & .headerItems {
+    @include mixins.flex-between;
+    height: 100%;
+  }
+}
+
+.logoText {
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 24px;
+  letter-spacing: 0.2px;
+}
+
+.logo {
+  @include mixins.flex-between;
+  column-gap: 16px;
+}
+
+
+
+.container {
+  padding: 0 40px;
+}

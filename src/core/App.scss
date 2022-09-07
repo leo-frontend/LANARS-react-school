@@ -1,0 +1,9 @@
+@use '../styles/variables' as vars;
+
+#root {
+  background-color: vars.$backgroundSite;
+  min-height: 100vh;
+  font-family: vars.$fontSaira;
+  font-style: normal;
+  color: vars.$mainColorText;
+}

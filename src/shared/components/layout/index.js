@@ -1,17 +1,18 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 
+import Header from '../header';
+import cls from './layout.module.scss';
+
 const Layout = () => {
 
   return (
-    <div>
-      <header>
-        Header
-      </header>
-      <main>
+    <>
+      <Header />
+      <main className={cls.container}>
         <Outlet />
       </main>
-    </div>
+    </>
   );
 };
 

@@ -12,8 +12,10 @@ const Routes = () => {
 
   return useRoutes([
     { path: '/', element: <Layout />, children: [
-      { index: true, element: <VideoListPage /> },
-      { path: 'add-video', element: <AddVideoPage /> },
+      { path: '/', element: <VideoListPage />, children: [
+        { path: 'add-video', element: <AddVideoPage /> },
+      ],
+      },
       { path: 'watch/:videoId', element: <WatchVideoPage /> },
       { path: '*', element: <NotFound /> },
     ]},

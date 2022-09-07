@@ -43,6 +43,10 @@ ol, ul {
   list-style: none;
 }
 
+iframe {
+  pointer-events: none;
+}
+
 blockquote, q {
   quotes: none;
 }
