@@ -4,12 +4,15 @@ import './styles/styles.scss';
 import App from './core/App.jsx';
 import reportWebVitals from './reportWebVitals';
 import Storage from 'core/services/back-end/Storage';
+import { BrowserRouter } from 'react-router-dom';
 
 (async () => {
   await Storage.createObjectStore(['albums', 'videos']);
   ReactDOM.render(
     <React.StrictMode>
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </React.StrictMode>,
     document.getElementById('root'),
   );

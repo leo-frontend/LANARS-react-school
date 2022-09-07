@@ -1,13 +1,12 @@
 import './App.scss';
 import React from 'react';
+import Routes from '../shared/components/routes';
 
 const App = () => {
-  const title = 'LANARS react school';
+
 
   return (
-    <div className="App">
-      {title}
-    </div>
+    <Routes />
   );
 };
 
