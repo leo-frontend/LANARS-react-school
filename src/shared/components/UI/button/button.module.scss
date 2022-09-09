@@ -1,0 +1,47 @@
+@use '../../../../styles/variables' as vars;
+
+.button {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  display: flex;
+  column-gap: 10px;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.2px;
+  color: inherit;
+  border-radius: 100px;
+  padding: 10px 24px;
+  outline: none;
+  transition: background 0.3s;
+}
+
+.btnVariantOutlined {
+  background: vars.$transparent;
+  color: vars.$brightBlue;
+  border: 1px solid vars.$outlinedBorder;
+}
+
+.btnVariantText {
+  background: vars.$transparent;
+  color: vars.$brightBlue;
+  border: none;
+}
+
+.btnVariantText:hover, .btnVariantText:focus, .btnVariantText:active,
+.btnVariantOutlined:hover, .btnVariantOutlined:focus, .btnVariantOutlined:active {
+  background: vars.$btnEffect;
+}
+
+.btnVariantContained {
+  background: vars.$brightBlue;
+  color: vars.$white;
+  border: none;
+}
+
+.btnDisabled {
+  opacity: 0.38;
+  color: vars.$disabled;
+  pointer-events: none;
+}

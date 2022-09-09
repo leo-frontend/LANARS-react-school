@@ -1,0 +1,63 @@
+@use '../../../styles/variables' as vars;
+
+.modal {
+  position: fixed;
+  z-index: 10;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  overflow: auto;
+  padding: 35px 0;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: vars.$overlay;
+  z-index: -1;
+  transition: 150ms ease-in-out;
+}
+
+.close {
+  cursor: pointer;
+}
+
+.surface {
+  width: 588px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  background: vars.$backgroundSite;
+}
+
+.heading {
+  font-family: vars.$fontSaira;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.2px;
+  justify-content: space-between;
+}
+
+.title {
+
+}
+
+.content {
+  padding-top: 24px;
+  flex-grow: 1;
+
+}
+
+.actions {
+  padding-top: 24px;
+  border-top: 1px solid #E5EDF2;
+  display: flex;
+  justify-content: flex-end;
+  column-gap: 16px;
+}
+

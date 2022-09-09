@@ -1,0 +1,16 @@
+@use './src/styles/mixins' as mixins;
+@use './src/styles/variables' as vars;
+
+.searchPanel {
+  display: flex;
+  column-gap: 24px;
+
+}
+
+.search {
+  width: 360px;
+}
+
+.listVideos {
+  margin-top: 24px;
+}

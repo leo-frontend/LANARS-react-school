@@ -1,0 +1,40 @@
+@use '../../../../styles/variables' as vars;
+
+.wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.inputUI {
+  border-radius: 4px;
+  border: 1px solid vars.$outlinedBorder;
+  padding: 8px 12px;
+
+
+  &::placeholder {
+    color: vars.$outlinedBorder;
+    font-weight: 500;
+    line-height: 24px;
+    font-family: vars.$fontSaira;
+    letter-spacing: 0.2px;
+  }
+}
+
+.inputDisabled {
+  opacity: 0.38;
+  color: vars.$disabled;
+  pointer-events: none;
+}
+
+.inputError {
+
+}
+
+.errorMessage {
+
+}
+
+.inputLabel {
+
+}

@@ -4,6 +4,8 @@
 .header {
   position: sticky;
   height: 72px;
+  top: 0;
+  z-index: 1;
   border-bottom: 1px solid vars.$blue;
   & .headerItems {
     @include mixins.flex-between;
@@ -16,6 +18,10 @@
   font-size: 22px;
   line-height: 24px;
   letter-spacing: 0.2px;
+}
+
+.link {
+  @include mixins.link;
 }
 
 .logo {

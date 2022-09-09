@@ -1,0 +1,10 @@
+@use './src/styles/mixins' as mixins;
+@use './src/styles/variables' as vars;
+
+
+.grid {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(200px, 1fr));
+  grid-gap: 24px;
+}

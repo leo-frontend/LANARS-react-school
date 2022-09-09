@@ -11,12 +11,12 @@ import WatchVideoPage from '../../../modules/watch-video';
 const Routes = () => {
 
   return useRoutes([
-    { path: '/', element: <Layout />, children: [
+    { element: <Layout />, children: [
       { path: '/', element: <VideoListPage />, children: [
         { path: 'add-video', element: <AddVideoPage /> },
       ],
       },
-      { path: 'watch/:videoId', element: <WatchVideoPage /> },
+      { path: '/watch/:videoId', element: <WatchVideoPage /> },
       { path: '*', element: <NotFound /> },
     ]},
   ]);
