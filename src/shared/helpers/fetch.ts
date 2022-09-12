@@ -1,9 +1,13 @@
-export const fetcher = (input: RequestInfo | URL, config?: RequestInit) => {
+export const fetcher = (input: RequestInfo | URL, config?: RequestInit & { params: { [key: string]: any } } ) => {
+  const { params, ...conf } = config;
+  const url = new URL(input as string);
+  const queries = new URLSearchParams(params);
 
-  return fetch(input, config)
+  url.search = queries.toString();
+
+  return fetch(url.href, conf as RequestInit)
     .then((res) => res.json())
     .catch((err) => {
-      console.log(err);
       throw err;
     });
 };

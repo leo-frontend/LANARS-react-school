@@ -1,27 +1,42 @@
-import React, { useEffect } from 'react';
+import React, { useCallback } from 'react';
 import VideoCard from '../video-card';
 
 import cls from './video-list.module.scss';
-/* import {fetcher} from '../../helpers/fetch';
-import { baseURL, apiKey } from '../../constants/api';*/
+import classNames from 'classnames';
+import { useStore } from '../../hooks/useStore';
+import { addSelect, removeSelect } from '../../store/actions';
 
-const VideoList = () => {
+const VideoList = ({ directionList = 'row', videos, selectMode }) => {
+  const { state: { selected }, dispatch } = useStore();
 
+  const classes = classNames(
+    cls.grid,
+    directionList === 'row' ? cls.gridRow : cls.gridColumn,
+  );
 
-  useEffect(() => {
-    // fetcher(`${baseURL}/search?key=${apiKey}&q=${'cs go'}&type=video&part=${'snippet'}`).then(res => console.log(res));
-  }, []);
+  const handleSelect = useCallback((event, id) => {
+
+    if (!selected.includes(id)) {
+      dispatch(addSelect(id));
+    } else {
+      dispatch(removeSelect(id));
+    }
+
+  }, [selected]);
 
 
   return (
-    <div className={cls.grid}>
-      <VideoCard />
-      <VideoCard />
-      <VideoCard />
-      <VideoCard />
-      <VideoCard />
-      <VideoCard />
-      <VideoCard />
+    <div className={classes}>
+      {
+        videos && videos.map((item) => (
+          <VideoCard
+            direction={directionList === 'row' ? 'column': 'row'}
+            onAction={handleSelect}
+            item={item}
+            selected={selectMode && selected.includes(item.id.videoId)}
+          />
+        ))
+      }
     </div>
   );
 };

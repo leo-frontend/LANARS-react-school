@@ -24,6 +24,7 @@
 
 .surface {
   width: 588px;
+  max-height: 100vh;
   border-radius: 8px;
   display: flex;
   flex-direction: column;

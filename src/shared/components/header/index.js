@@ -16,7 +16,6 @@ const Header = () => {
             <h1 className={cls.logoText}>LANARS react school</h1>
           </div>
         </Link>
-        <input type="text" placeholder={'search'} />
       </div>
     </header>
   );

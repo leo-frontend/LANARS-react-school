@@ -22,14 +22,14 @@ export class API {
 
   async get(path: string) {
     const [route, query] = this.getParams(path);
-
+/*
     try {
       await this.errorRequest(route);
     } catch (error) {
       return this.errorRequest(route);
     }
 
-    console.log(query);
+    console.log(query);*/
     return await this.routes[route]?.read(new Query(query));
   }
 
@@ -67,7 +67,6 @@ export class API {
         reject(new ServerError(404, 'Not found'));
         throw new ServerError(404, 'Not found');
       }
-
       this.routes[route].validate(data);
 
       resolve(true);

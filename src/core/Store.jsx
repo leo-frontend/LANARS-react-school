@@ -6,19 +6,28 @@ import API from './services/API';
 
 const initialState = {
   videos: [],
+  selected: [],
   loading: false,
 };
-
-
-
 
 const StoreContext = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
-    /*API.get('/api/videos?').then((values) => {
-      console.log(values);
-    });*/
+    dispatch(getVideos());
+    API.get('/api/videos').then((values) => {
+      dispatch(setVideos(values?.length ? values.map((item) => {
+        const url = item.url.split('/');
+        return {
+          id: {
+            videoId: url[url.length - 1],
+          },
+          snippet: {
+            ...item,
+          },
+        };
+      }) : [] ));
+    });
   }, []);
 
   return (
