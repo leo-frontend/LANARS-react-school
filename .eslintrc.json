@@ -193,7 +193,7 @@
         "arrays": "always-multiline",
         "imports": "always-multiline",
         "exports": "always-multiline",
-        "functions": "always-multiline"
+        "functions": "ignore"
       }
     ],
     "@typescript-eslint/no-unused-vars": "error",

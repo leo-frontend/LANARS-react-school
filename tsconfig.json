@@ -22,11 +22,11 @@
     "jsx": "react-jsx"
   },
   "paths": {
-    "@assets/*" : ["assets/*"],
-    "@core/*": ["core/*"],
-    "@modules/*": ["modules/*"],
-    "@shared/*": ["shared/*"],
-    "@styles/*": ["styles/*"],
+    "@assets*" : ["assets/*"],
+    "@core*": ["core/*"],
+    "@modules*": ["modules/*"],
+    "@shared*": ["shared/*"],
+    "@styles*": ["styles/*"],
   },
   "exclude": ["node_modules"],
   "include": ["**/*.ts", "**/*.tsx"]
