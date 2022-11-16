@@ -1,7 +1,7 @@
 import './App.scss';
 import React from 'react';
 
-const App = () => {
+const App = (): JSX.Element => {
   const title = 'LANARS react school';
 
   return (
