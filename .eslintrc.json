@@ -23,6 +23,7 @@
     "react",
     "jsx-a11y"
   ],
+  "ignorePatterns": ["./src/core/services/**/*.ts"],
   "rules": {
     "@typescript-eslint/adjacent-overload-signatures": "error",
     "@typescript-eslint/array-type": "off",

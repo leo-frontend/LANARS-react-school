@@ -1,3 +1,4 @@
+/* eslint-disable */
 /* eslint no-console: 0 */  // --> OFF
 import {BackEndAbstract, Route} from './back-end/api-classes/BackEndAbstract';
 import * as queryString from 'query-string';
@@ -9,7 +10,7 @@ export class API {
     '/api/photos': new Photo(),
   };
 
-  async put(path: string, data: any) {
+  async post(path: string, data: any) {
     const [route] = this.getParams(path);
     try {
       await this.errorRequest(route, data);

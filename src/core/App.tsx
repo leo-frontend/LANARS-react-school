@@ -1,8 +1,16 @@
 import './App.scss';
-import React from 'react';
+import React, { useEffect } from 'react';
+import API from './services/API';
 
 const App = (): JSX.Element => {
   // const title = 'LANARS react school';
+
+  useEffect(() => {
+    API.get('/api/photos').then((result) => {
+      // eslint-disable-next-line no-console
+      console.log(result);
+    });
+  });
 
   return (
     <div className="App">
