@@ -1,8 +1,10 @@
+/* eslint-disable */
+
 import { ServerError } from '.';
 import { BackEndAbstract } from './BackEndAbstract';
 
 export class Photo extends BackEndAbstract {
-  readonly requiredFields = ['title', 'description', 'url', 'likes', 'date', 'duration'];
+  readonly requiredFields = ['title', 'date', 'width', 'height', 'size', 'duration', 'image'];
   readonly route = '/api/photos';
   readonly tableName = 'photos';
 
