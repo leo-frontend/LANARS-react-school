@@ -1,12 +1,12 @@
 /* eslint no-console: 0 */  // --> OFF
-import {BackEndAbstract, Route} from './back-end/api-classes/BackEndAbstarct';
+import {BackEndAbstract, Route} from './back-end/api-classes/BackEndAbstract';
 import * as queryString from 'query-string';
-import { Album, Video, Query, ServerError } from './back-end/api-classes';
+import { Album, Photo, Query, ServerError } from './back-end/api-classes';
 
 export class API {
   private routes: {[key in Route]: BackEndAbstract} = {
     '/api/albums': new Album(),
-    '/api/videos': new Video(),
+    '/api/photos': new Photo(),
   };
 
   async put(path: string, data: any) {
@@ -30,7 +30,7 @@ export class API {
     }
 
     console.log(query);
-    return await this.routes[route]?.read(new Query(query));
+    return await this.routes[route]?.read(new Query(query as Query));
   }
 
   async patch(path: string, data: any) {
@@ -53,7 +53,7 @@ export class API {
     } catch (error) {
       return this.errorRequest(route);
     }
-    return await this.routes[route]?.delete(new Query(query));
+    return await this.routes[route]?.delete(new Query(query as Query));
   }
 
   private getParams(route: string): [Route, Object] {

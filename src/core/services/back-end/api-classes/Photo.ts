@@ -1,10 +1,10 @@
 import { ServerError } from '.';
-import { BackEndAbstract } from './BackEndAbstarct';
+import { BackEndAbstract } from './BackEndAbstract';
 
-export class Video extends BackEndAbstract {
+export class Photo extends BackEndAbstract {
   readonly requiredFields = ['title', 'description', 'url', 'likes', 'date', 'duration'];
-  readonly route = '/api/videos';
-  readonly tableName = 'videos';
+  readonly route = '/api/photos';
+  readonly tableName = 'photos';
 
   constructor() {
     super();

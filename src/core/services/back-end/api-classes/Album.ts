@@ -1,5 +1,5 @@
 import { ServerError } from '.';
-import { BackEndAbstract } from './BackEndAbstarct';
+import { BackEndAbstract } from './BackEndAbstract';
 
 export class Album extends BackEndAbstract {
   readonly route = '/api/albums';

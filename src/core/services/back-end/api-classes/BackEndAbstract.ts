@@ -3,8 +3,8 @@ import Storage from '../Storage';
 import { Query } from './Query';
 import { ServerError } from './ServerError';
 
-export type Route = '/api/albums' | '/api/videos';
-export type Tablename = 'albums' | 'videos';
+export type Route = '/api/albums' | '/api/photos';
+export type Tablename = 'albums' | 'photos';
 
 export abstract class BackEndAbstract {
   abstract readonly route: Route;
@@ -13,7 +13,7 @@ export abstract class BackEndAbstract {
 
   constructor() {}
 
-  async create<T>(data: T): Promise<T> {
+  async create<T extends object>(data: T): Promise<T> {
     return Storage.putValue(this.tableName, data);
   }
 
@@ -32,7 +32,7 @@ export abstract class BackEndAbstract {
     return filteredValues.splice(query.offset, query.limit);
   }
 
-  async update<T>(data: T): Promise<T> {
+  async update<T extends object>(data: T): Promise<T> {
     return Storage.putValue(this.tableName, data);
   }
 

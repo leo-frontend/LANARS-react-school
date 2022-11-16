@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import Storage from 'core/services/back-end/Storage';
 
 (async () => {
-  await Storage.createObjectStore(['albums', 'videos']);
+  await Storage.createObjectStore(['albums', 'photos']);
   ReactDOM.render(
     <React.StrictMode>
       <App />
