@@ -12,6 +12,7 @@ export class API {
 
   async post(path: string, data: any) {
     const [route] = this.getParams(path);
+    
     try {
       await this.errorRequest(route, data);
     } catch (error) {

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { ServerError } from '.';
 import { BackEndAbstract } from './BackEndAbstract';
 

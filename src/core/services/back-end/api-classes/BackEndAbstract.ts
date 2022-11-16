@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { EntityAbstract } from 'shared/entities/EntityAbstract';
 import Storage from '../Storage';
 import { Query } from './Query';
