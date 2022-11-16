@@ -1,5 +1,5 @@
-# Project name
-#### Basic project description
+# LANARS react school
+#### This is a base for a future photo album project
 
 ## Project resources:
 
@@ -9,18 +9,25 @@
 ``` 
 .
 ├── src
-│   ├── app                # application
-│   │   ├── example        # routed container component
-│   │   └── ...   
-│   ├── lib                # services, entities, interfaces, model
-│   ├── store              # ngrx store specifications
-│   └── ...
+│   ├── assets             # fonts, images and icons
+│   ├── core               # A core of this project. Includes back-end logic
+│   │   ├── services       # back-end logic
+│   │   ├── App.scss
+│   │   └── App.tsx
+│   ├── shared    
+│   │   ├── constants       
+│   │   ├── helpers        # helper functions and utils
+│   │   ├── hoc            # Higher Order Components
+│   │   ├── hooks          # For custom hooks
+│   │   ├── interfaces
+│   │   └── store          # Redux store, reducers and actions
+│   └── ...
+│   
 ├── node_modules
 ├── package.json           # needed libraries
 ├── .vanilla.eslintr.json  # basic js linter configuration
-├── .eslintr.json          # linter configuration
-├── tsconfig.json          # ts definition
-└── tslint.json            # linter with codelyzer
+├── .eslintr.json          # react and TS linter configuration
+└── tsconfig.json          # ts definition
 ```
 
 
