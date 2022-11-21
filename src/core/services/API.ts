@@ -63,14 +63,16 @@ export class API {
     return [split[0] as Route, queryString.parse(split[1], {arrayFormat: 'comma'})];
   }
 
-  private errorRequest(route: Route, data?: any): Promise<boolean> {
+  private errorRequest(route: Route, data?: any, checkRequired = true): Promise<boolean> {
     return new Promise(((resolve, reject) => {
       if (!this.routes[route]) {
         reject(new ServerError(404, 'Not found'));
         throw new ServerError(404, 'Not found');
       }
 
-      this.routes[route].validate(data);
+      if (data) {
+        this.routes[route].validate(data, checkRequired);
+      }
 
       resolve(true);
     }));

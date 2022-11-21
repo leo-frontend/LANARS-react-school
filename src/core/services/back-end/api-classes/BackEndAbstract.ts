@@ -51,5 +51,5 @@ export abstract class BackEndAbstract {
       }),
     );
   }
-  abstract validate(data: object): void;
+  abstract validate(data: object, checkRequired: boolean): void;
 }

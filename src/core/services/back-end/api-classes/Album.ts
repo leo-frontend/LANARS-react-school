@@ -11,20 +11,41 @@ export class Album extends BackEndAbstract {
     super();
   }
 
-  validate(data: any) {
-    for (const key of this.requiredFields) {
-      if (!data[key]) {
-        throw new ServerError(400, `Property "${key}" is required`);
+  validate(data: any, checkRequired = true) {
+    const allFields = Object.keys(AlbumEntity);
+
+    if (checkRequired) {
+      for (const key of this.requiredFields) {
+        if (!data[key]) {
+          throw new ServerError(400, `Property "${key}" is required`);
+        }
       }
     }
 
     for (const key of Object.keys(data)) {
-      if (!this.requiredFields.includes(key)) {
+      if (!allFields.includes(key)) {
         throw new ServerError(
           400,
           `Unknown property "${key}". You can only use one of the following: "${this.requiredFields.join('", "')}"`,
         );
       }
     }
+  }
+
+  entity(data: AlbumEntity): AlbumEntity {
+    return new AlbumEntity(data);
+  }
+}
+
+class AlbumEntity {
+  title = '';
+  description = '';
+  photos = []; 
+  date: number;
+
+  constructor(data: AlbumEntity) {
+    this.date = Date.now();
+    this.title = data.title;
+    this.description = data.description;
   }
 }
