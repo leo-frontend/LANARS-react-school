@@ -3,9 +3,11 @@ import ReactDOM from 'react-dom/client';
 import App from './core/App';
 import reportWebVitals from './reportWebVitals';
 import Storage from 'core/services/back-end/Storage';
+import { firstInit } from 'core/services/fistInit';
 
 (async () => {
   await Storage.createObjectStore(['albums', 'photos']);
+  firstInit();
   const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
   );

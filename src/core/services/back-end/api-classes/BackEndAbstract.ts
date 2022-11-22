@@ -8,15 +8,15 @@ import { ServerError } from './ServerError';
 export type Route = '/api/albums' | '/api/photos';
 export type Tablename = 'albums' | 'photos';
 
-export abstract class BackEndAbstract {
+export abstract class BackEndAbstract<Entity extends object> {
   abstract readonly route: Route;
   abstract readonly tableName: Tablename;
   abstract readonly requiredFields: string[];
 
   constructor() {}
 
-  async create<T extends object>(data: T): Promise<T> {
-    return Storage.putValue(this.tableName, data);
+  async create<T extends Entity>(data: T): Promise<T> {
+    return Storage.putValue(this.tableName, this.entity(data));
   }
 
   async read<T, I extends number | undefined>(query: Query): Promise<I extends number ? T : T[]> {
@@ -34,7 +34,7 @@ export abstract class BackEndAbstract {
     return filteredValues.splice(query.offset, query.limit);
   }
 
-  async update<T extends object>(data: T): Promise<T> {
+  async update<T extends Entity>(data: T): Promise<T> {
     return Storage.putValue(this.tableName, data);
   }
 
@@ -52,4 +52,5 @@ export abstract class BackEndAbstract {
     );
   }
   abstract validate(data: object, checkRequired: boolean): void;
+  abstract entity(data: Entity): Entity;
 }

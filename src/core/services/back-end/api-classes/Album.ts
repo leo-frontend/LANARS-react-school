@@ -2,7 +2,7 @@
 import { ServerError } from '.';
 import { BackEndAbstract } from './BackEndAbstract';
 
-export class Album extends BackEndAbstract {
+export class Album extends BackEndAbstract<AlbumEntity> {
   readonly route = '/api/albums';
   readonly tableName = 'albums';
   readonly requiredFields = ['title', 'description'];
@@ -12,7 +12,7 @@ export class Album extends BackEndAbstract {
   }
 
   validate(data: any, checkRequired = true) {
-    const allFields = Object.keys(AlbumEntity);
+    const allFields = Object.keys(new AlbumEntity(data));
 
     if (checkRequired) {
       for (const key of this.requiredFields) {
@@ -26,7 +26,7 @@ export class Album extends BackEndAbstract {
       if (!allFields.includes(key)) {
         throw new ServerError(
           400,
-          `Unknown property "${key}". You can only use one of the following: "${this.requiredFields.join('", "')}"`,
+          `Unknown property "${key}". You can only use one of the following: "${allFields.join('", "')}"`,
         );
       }
     }
@@ -47,5 +47,6 @@ class AlbumEntity {
     this.date = Date.now();
     this.title = data.title;
     this.description = data.description;
+    this.photos = data.photos || this.photos;
   }
 }
