@@ -10,7 +10,7 @@ export class API {
     '/api/photos': new Photo(),
   };
 
-  async post(path: string, data: any) {
+  async post(path: `${Route}/${string}`, data: any) {
     const [route] = this.getParams(path);
     
     try {
@@ -22,7 +22,7 @@ export class API {
     return await this.routes[route]?.create(data);
   }
 
-  async get(path: string) {
+  async get(path: `${Route}/${string}`) {
     const [route, query] = this.getParams(path);
 
     try {
@@ -35,7 +35,7 @@ export class API {
     return await this.routes[route]?.read(new Query(query as Query));
   }
 
-  async patch(path: string, data: any) {
+  async patch(path: `${Route}/${string}`, data: any) {
     const [route] = this.getParams(path);
     try {
       if (!data.id) {
@@ -48,7 +48,7 @@ export class API {
     return await this.routes[route]?.update(data);
   }
 
-  async delete(path: string) {
+  async delete(path: `${Route}/${string}`) {
     const [route, query] = this.getParams(path);
     try {
       await this.errorRequest(route);
@@ -58,7 +58,7 @@ export class API {
     return await this.routes[route]?.delete(new Query(query as Query));
   }
 
-  private getParams(route: string): [Route, Object] {
+  private getParams(route: `${Route}/${string}`): [Route, Object] {
     const split = route.split('?');
     return [split[0] as Route, queryString.parse(split[1], {arrayFormat: 'comma'})];
   }
