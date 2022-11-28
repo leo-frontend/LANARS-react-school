@@ -33,5 +33,5 @@
 
 # Development server
 
-Run `npm start` for a dev server
+Run `npm start` for a dev server  
 Link: https://lanars-react-school-2022.web.app/

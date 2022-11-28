@@ -1,9 +1,7 @@
-import { IPhotos } from './photos';
-
 export interface IAlbums {
   title: string;
   description: string;
-  photos: IPhotos[];
+  photos: number[];
   date: number;
   id: number;
 }
