@@ -1,7 +1,6 @@
 /* eslint-disable */
 import { ServerError } from '.';
 import { BackEndAbstract } from './BackEndAbstract';
-import { IPhoto } from '../../../../shared/interfaces';
 
 export class Photo extends BackEndAbstract<PhotoEntity> {
   readonly requiredFields = ['image'];
@@ -42,7 +41,7 @@ export class Photo extends BackEndAbstract<PhotoEntity> {
   // }
 }
 
-class PhotoEntity implements IPhoto {
+class PhotoEntity {
   image: string;
   description = '';
   date = 0;
