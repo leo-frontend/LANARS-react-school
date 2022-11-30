@@ -1,4 +1,4 @@
-export interface Photo {
+export interface Album {
   title: string;
   description: string;
   photos: number[];
