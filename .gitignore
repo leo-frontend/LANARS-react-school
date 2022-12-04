@@ -7,6 +7,13 @@
 # Only exists if Bazel was run
 /bazel-out
 
+# Build output
+build/
+
+# Firebase Hosting
+.firebase/*
+.firebaserc
+
 # dependencies
 /node_modules
 
