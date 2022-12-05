@@ -51,7 +51,7 @@ export abstract class BackEndAbstract<Entity extends object> {
   }
 
   async delete(query: Query): Promise<any> {
-    if (!query.ids.length) {
+    if (!query.ids?.length) {
       return new Promise((resolve, reject) => {
         reject(new ServerError(400, 'Please provide ids you want to delete'));
         throw new ServerError(400, 'Please provide ids you want to delete');
