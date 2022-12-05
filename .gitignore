@@ -4,9 +4,10 @@
 /dist
 /tmp
 /out-tsc
+/build
 # Only exists if Bazel was run
 /bazel-ou
-/build
+
 
 # dependencies
 /node_modules
