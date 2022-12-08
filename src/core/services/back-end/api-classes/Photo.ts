@@ -48,7 +48,7 @@ class PhotoEntity {
   size = 0;
   type = '';
   id?: number;
-  
+
   constructor(data: PhotoEntity) {
     this.date = data.date;
     this.description = data.description || '';
