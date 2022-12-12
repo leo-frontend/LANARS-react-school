@@ -1,9 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import {Provider} from 'react-redux';
+
 import App from './core/App';
 import reportWebVitals from './reportWebVitals';
 import Storage from 'core/services/back-end/Storage';
-import { firstInit } from 'core/services/fistInit';
+import {firstInit} from 'core/services/fistInit';
+import store from 'shared/store';
+
 
 (async () => {
   await Storage.createObjectStore(['albums', 'photos']);
@@ -13,7 +17,9 @@ import { firstInit } from 'core/services/fistInit';
   );
   root.render(
     <React.StrictMode>
-      <App />
+      <Provider store={store}>
+        <App/>
+      </Provider>
     </React.StrictMode>
   );
 
