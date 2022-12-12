@@ -44,22 +44,22 @@ const photoSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(addPhoto.fulfilled, (state, action) => {
-        state.photos.push(action.payload)
+        state.photos.push(action.payload);
       })
       .addCase(updatePhoto.fulfilled, (state, action) => {
-        const id = state.photos.findIndex(item => item.id === action.payload.id)
+        const id = state.photos.findIndex(item => item.id === action.payload.id);
         state.photos[id] = {
           ...state.photos[id],
-          ...action.payload
-        }
+          ...action.payload,
+        };
       })
       .addCase(getPhoto.fulfilled, (state, action) => {
-        state.photos = action.payload
+        state.photos = action.payload;
       })
       .addCase(deletePhoto.fulfilled, (state, action) => {
-        state.photos = state.photos.filter(item => item.id !== action.payload)
-      })
-  }
+        state.photos = state.photos.filter(item => item.id !== action.payload);
+      });
+  },
 });
 
 

@@ -44,22 +44,22 @@ const albumSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(addAlbum.fulfilled, (state, action) => {
-        state.album.push(action.payload)
+        state.album.push(action.payload);
       })
       .addCase(updateAlbum.fulfilled, (state, action) => {
-        const id = state.album.findIndex(item => item.id === action.payload.id)
+        const id = state.album.findIndex(item => item.id === action.payload.id);
         state.album[id] = {
           ...state.album[id],
-          ...action.payload
-        }
+          ...action.payload,
+        };
       })
       .addCase(getAlbum.fulfilled, (state, action) => {
-        state.album = action.payload
+        state.album = action.payload;
       })
       .addCase(deleteAlbum.fulfilled, (state, action) => {
-        state.album = state.album.filter(item => item.id !== action.payload.id)
-      })
-  }
+        state.album = state.album.filter(item => item.id !== action.payload.id);
+      });
+  },
 });
 
 
