@@ -16,7 +16,12 @@ const App = (): JSX.Element => {
 
   return (
     <div className="App">
-      {photo.map(item => <img key={item.image} src={item.image} alt={item.type}/>)}
+      {photo.map(item => (
+        <div>
+          {item.id}
+          <img key={item.image} src={item.image} alt={item.type}/>
+        </div>
+      ))}
       {album.map(item => (
         <div key={item.title}>
           {item.title}
