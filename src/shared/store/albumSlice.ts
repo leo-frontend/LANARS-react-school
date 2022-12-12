@@ -22,7 +22,7 @@ export const updateAlbum = createAsyncThunk(
 export const getAlbum = createAsyncThunk(
   'photo/getAlbum',
   async function (id: number[]) {
-    return await API.get(`/api/albums${id ? `?ids=${[...id]}` : ''}`) as IAlbum[];
+    return await API.get(`/api/albums${id === null ? `?ids=${[...id]}` : ''}`) as IAlbum[];
   }
 );
 

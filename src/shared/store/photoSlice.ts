@@ -22,7 +22,7 @@ export const updatePhoto = createAsyncThunk(
 export const getPhoto = createAsyncThunk(
   'photo/getPhoto',
   async function (id: number[]) {
-    return await API.get(`/api/photos${id ? `?ids=${[...id]}` : ''}`) as IPhoto[];
+    return await API.get(`/api/photos${id === null ? `?ids=${[...id]}` : ''}`) as IPhoto[];
   }
 );
 
