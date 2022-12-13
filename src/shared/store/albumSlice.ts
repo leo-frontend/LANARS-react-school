@@ -7,29 +7,45 @@ import {IAlbumState} from '../interfaces/StateSlices';
 
 export const addAlbum = createAsyncThunk(
   'photo/addAlbum',
-  async function (album: IAlbum) {
-    return await API.post('/api/albums', album) as IAlbum;
+  async function (album: IAlbum, thunkAPI) {
+    try {
+      return await API.post('/api/albums', album) as IAlbum;
+    } catch (error) {
+      return thunkAPI.rejectWithValue('Error');
+    }
   }
 );
 
 export const updateAlbum = createAsyncThunk(
   'photo/updateAlbum',
-  async function (album: Required<IAlbum>) {
-    return await API.patch('/api/albums', album) as IAlbum;
+  async function (album: Required<IAlbum>, thunkAPI) {
+    try {
+      return await API.patch('/api/albums', album) as IAlbum;
+    } catch (error) {
+      return thunkAPI.rejectWithValue('Error');
+    }
   }
 );
 
 export const getAlbum = createAsyncThunk(
   'photo/getAlbum',
-  async function (id: number[]) {
-    return await API.get(`/api/albums${id === null ? `?ids=${[...id]}` : ''}`) as IAlbum[] | IAlbum;
+  async function (id: number[], thunkAPI) {
+    try {
+      return await API.get(`/api/albums${id === null ? `?ids=${[...id]}` : ''}`) as IAlbum[] | IAlbum;
+    } catch (error) {
+      return thunkAPI.rejectWithValue('Error');
+    }
   }
 );
 
 export const deleteAlbum = createAsyncThunk(
   'photo/deleteAlbum',
-  async function (id: number) {
-    return await API.delete(`/api/albums?ids=${id}`);
+  async function (id: number, thunkAPI) {
+    try {
+      return await API.delete(`/api/albums?ids=${id}`);
+    } catch (error) {
+      return thunkAPI.rejectWithValue('Error');
+    }
   }
 );
 

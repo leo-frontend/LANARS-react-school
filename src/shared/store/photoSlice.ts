@@ -7,29 +7,45 @@ import {IPhotoState} from '../interfaces/StateSlices';
 
 export const addPhoto = createAsyncThunk(
   'photo/addPhoto',
-  async function (photo: IPhoto) {
-    return await API.post('/api/photos', photo) as IPhoto;
+  async function (photo: IPhoto, thunkAPI) {
+    try {
+      return await API.post('/api/photos', photo) as IPhoto;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
   }
 );
 
 export const updatePhoto = createAsyncThunk(
   'photo/updatePhoto',
-  async function (photo: Required<IPhoto>) {
-    return await API.patch('/api/photos', photo) as IPhoto;
+  async function (photo: Required<IPhoto>, thunkAPI) {
+    try {
+      return await API.patch('/api/photos', photo) as IPhoto;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
   }
 );
 
 export const getPhoto = createAsyncThunk(
   'photo/getPhoto',
-  async function (id: number[]) {
-    return await API.get(`/api/photos${id === null ? `?ids=${[...id]}` : ''}`) as IPhoto[] | IPhoto;
+  async function (id: number[], thunkAPI) {
+    try {
+      return await API.get(`/api/photos${id === null ? `?ids=${[...id]}` : ''}`) as IPhoto[] | IPhoto;
+    } catch (error) {
+      return thunkAPI.rejectWithValue('Error');
+    }
   }
 );
 
 export const deletePhoto = createAsyncThunk(
   'photo/deletePhoto',
-  async function (id: number) {
-    return await API.delete(`/api/photos?ids=${id}`) as number;
+  async function (id: number, thunkAPI) {
+    try {
+      return await API.delete(`/api/photos?ids=${id}`) as number;
+    } catch (error) {
+      return thunkAPI.rejectWithValue('Error');
+    }
   }
 );
 
