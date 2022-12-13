@@ -2,7 +2,7 @@ import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 
 import API from '../../core/services/API';
 import {IAlbum} from '../interfaces';
-import {IAlbumState} from '../interfaces/Album';
+import {IAlbumState} from '../interfaces/StateSlices';
 
 
 export const addAlbum = createAsyncThunk(

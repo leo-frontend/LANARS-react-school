@@ -2,7 +2,7 @@ import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 
 import API from '../../core/services/API';
 import {IPhoto} from '../interfaces';
-import {IPhotoState} from '../interfaces/Photo';
+import {IPhotoState} from '../interfaces/StateSlices';
 
 
 export const addPhoto = createAsyncThunk(

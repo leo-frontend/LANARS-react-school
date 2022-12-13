@@ -6,7 +6,3 @@ export interface IPhoto {
   size: number;
   type: string;
 }
-
-export interface IPhotoState {
-  photos: IPhoto[];
-}

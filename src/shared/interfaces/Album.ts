@@ -5,7 +5,3 @@ export interface IAlbum {
     date: number;
     id?: number;
 }
-
-export interface IAlbumState {
-  album: IAlbum[];
-}
