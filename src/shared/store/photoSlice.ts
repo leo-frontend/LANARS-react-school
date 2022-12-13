@@ -14,7 +14,7 @@ export const addPhoto = createAsyncThunk(
 
 export const updatePhoto = createAsyncThunk(
   'photo/updatePhoto',
-  async function(photo: Required<IPhoto>) {
+  async function (photo: Required<IPhoto>) {
     return await API.patch('/api/photos', photo) as IPhoto;
   }
 );
@@ -22,7 +22,7 @@ export const updatePhoto = createAsyncThunk(
 export const getPhoto = createAsyncThunk(
   'photo/getPhoto',
   async function (id: number[]) {
-    return await API.get(`/api/photos${id === null ? `?ids=${[...id]}` : ''}`) as IPhoto[];
+    return await API.get(`/api/photos${id === null ? `?ids=${[...id]}` : ''}`) as IPhoto[] | IPhoto;
   }
 );
 
@@ -54,7 +54,7 @@ const photoSlice = createSlice({
         };
       })
       .addCase(getPhoto.fulfilled, (state, action) => {
-        state.photos = action.payload;
+        state.photos = Array.isArray(action.payload) ? action.payload : [...state.photos, action.payload];
       })
       .addCase(deletePhoto.fulfilled, (state, action) => {
         state.photos = state.photos.filter(item => item.id !== action.payload);
