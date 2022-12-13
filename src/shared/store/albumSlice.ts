@@ -3,6 +3,7 @@ import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import API from '../../core/services/API';
 import {IAlbum} from '../interfaces';
 import {IAlbumState} from '../interfaces/StateSlices';
+import {isPending, isRejected} from './helpers';
 
 
 export const addAlbum = createAsyncThunk(
@@ -80,6 +81,13 @@ const albumSlice = createSlice({
       .addCase(deleteAlbum.fulfilled, (state, action) => {
         state.loading = 'succeeded';
         state.album = state.album.filter(item => item.id !== action.payload.id);
+      })
+      .addMatcher(isPending, (state) => {
+        state.loading = 'pending';
+      })
+      .addMatcher(isRejected, (state, action) => {
+        state.loading = 'failed';
+        state.error = action.error.message;
       });
   },
 });

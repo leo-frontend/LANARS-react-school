@@ -3,6 +3,7 @@ import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import API from '../../core/services/API';
 import {IPhoto} from '../interfaces';
 import {IPhotoState} from '../interfaces/StateSlices';
+import {isPending, isRejected} from './helpers';
 
 
 export const addPhoto = createAsyncThunk(
@@ -80,6 +81,13 @@ const photoSlice = createSlice({
       .addCase(deletePhoto.fulfilled, (state, action) => {
         state.loading = 'succeeded';
         state.photos = state.photos.filter(item => item.id !== action.payload);
+      })
+      .addMatcher(isPending, (state) => {
+        state.loading = 'pending';
+      })
+      .addMatcher(isRejected, (state, action) => {
+        state.loading = 'failed';
+        state.error = action.error.message;
       });
   },
 });
