@@ -6,8 +6,7 @@ import {useAppDispatch, useAppSelector} from '../shared/hooks/redux_hooks';
 
 const App = (): JSX.Element => {
   const dispatch = useAppDispatch();
-  const photo = useAppSelector(state => state.photo.photos);
-  const album = useAppSelector(state => state.album.album);
+  const {photo, album} = useAppSelector(state => state);
 
   useEffect(() => {
     dispatch(getPhoto([]));
@@ -16,14 +15,14 @@ const App = (): JSX.Element => {
 
   return (
     <div className="App">
-      {photo.map(item => (
-        <div>
+      {photo.photos.map(item => (
+        <div key={item.date}>
           {item.id}
-          <img key={item.image} src={item.image} alt={item.type}/>
+          <img src={item.image} alt={item.type}/>
         </div>
       ))}
-      {album.map(item => (
-        <div key={item.title}>
+      {album.album.map(item => (
+        <div key={item.date}>
           {item.title}
           <div>{item.photos}</div>
         </div>
