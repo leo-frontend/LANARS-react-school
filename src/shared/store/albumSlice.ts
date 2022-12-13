@@ -14,7 +14,7 @@ export const addAlbum = createAsyncThunk(
 
 export const updateAlbum = createAsyncThunk(
   'photo/updateAlbum',
-  async function (album: IAlbum) {
+  async function (album: Required<IAlbum>) {
     return await API.patch('/api/albums', album) as IAlbum;
   }
 );

@@ -14,7 +14,7 @@ export const addPhoto = createAsyncThunk(
 
 export const updatePhoto = createAsyncThunk(
   'photo/updatePhoto',
-  async function (photo: IPhoto) {
+  async function(photo: Required<IPhoto>) {
     return await API.patch('/api/photos', photo) as IPhoto;
   }
 );
