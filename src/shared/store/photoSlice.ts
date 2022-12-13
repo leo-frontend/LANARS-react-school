@@ -51,6 +51,8 @@ export const deletePhoto = createAsyncThunk(
 
 const initialState: IPhotoState = {
   photos: [],
+  loading: 'idle',
+  error: '',
 };
 
 const photoSlice = createSlice({
@@ -60,19 +62,23 @@ const photoSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(addPhoto.fulfilled, (state, action) => {
+        state.loading = 'succeeded';
         state.photos.push(action.payload);
       })
       .addCase(updatePhoto.fulfilled, (state, action) => {
         const id = state.photos.findIndex(item => item.id === action.payload.id);
+        state.loading = 'succeeded';
         state.photos[id] = {
           ...state.photos[id],
           ...action.payload,
         };
       })
       .addCase(getPhoto.fulfilled, (state, action) => {
+        state.loading = 'succeeded';
         state.photos = Array.isArray(action.payload) ? action.payload : [...state.photos, action.payload];
       })
       .addCase(deletePhoto.fulfilled, (state, action) => {
+        state.loading = 'succeeded';
         state.photos = state.photos.filter(item => item.id !== action.payload);
       });
   },

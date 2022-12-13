@@ -51,6 +51,8 @@ export const deleteAlbum = createAsyncThunk(
 
 const initialState: IAlbumState = {
   album: [],
+  loading: 'idle',
+  error: '',
 };
 
 const albumSlice = createSlice({
@@ -60,9 +62,11 @@ const albumSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(addAlbum.fulfilled, (state, action) => {
+        state.loading = 'succeeded';
         state.album.push(action.payload);
       })
       .addCase(updateAlbum.fulfilled, (state, action) => {
+        state.loading = 'succeeded';
         const id = state.album.findIndex(item => item.id === action.payload.id);
         state.album[id] = {
           ...state.album[id],
@@ -70,9 +74,11 @@ const albumSlice = createSlice({
         };
       })
       .addCase(getAlbum.fulfilled, (state, action) => {
+        state.loading = 'succeeded';
         state.album = Array.isArray(action.payload) ? action.payload : [...state.album, action.payload];
       })
       .addCase(deleteAlbum.fulfilled, (state, action) => {
+        state.loading = 'succeeded';
         state.album = state.album.filter(item => item.id !== action.payload.id);
       });
   },
