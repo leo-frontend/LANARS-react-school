@@ -1,17 +1,17 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./core/App";
-import reportWebVitals from "./reportWebVitals";
-import Storage from "core/services/back-end/Storage";
-import { firstInit } from "core/services/fistInit";
-import { Provider } from "react-redux";
-import { store } from "shared/store";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './core/App';
+import reportWebVitals from './reportWebVitals';
+import Storage from 'core/services/back-end/Storage';
+import { firstInit } from 'core/services/fistInit';
+import { Provider } from 'react-redux';
+import { store } from 'shared/store';
 
 (async () => {
-  await Storage.createObjectStore(["albums", "photos"]);
+  await Storage.createObjectStore(['albums', 'photos']);
   firstInit();
   const root = ReactDOM.createRoot(
-    document.getElementById("root") as HTMLElement
+    document.getElementById('root') as HTMLElement
   );
   root.render(
     <React.StrictMode>
