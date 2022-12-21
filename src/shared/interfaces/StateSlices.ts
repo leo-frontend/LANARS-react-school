@@ -2,10 +2,10 @@ import {IPhoto} from './Photo';
 import {IAlbum} from './Album';
 
 enum Status {
-  idle,
-  pending,
-  succeeded,
-  failed,
+  IDLE,
+  PENDING,
+  SUCCEEDED,
+  FAILED,
 }
 
 export interface IPhotoState {

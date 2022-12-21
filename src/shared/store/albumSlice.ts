@@ -52,7 +52,7 @@ export const deleteAlbum = createAsyncThunk(
 
 const initialState: IAlbumState = {
   album: [],
-  loading: 'idle',
+  loading: 'IDLE',
   error: '',
 };
 
@@ -63,7 +63,7 @@ const albumSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(addAlbum.fulfilled, (state, action) => {
-        state.loading = 'succeeded';
+        state.loading = 'SUCCEEDED';
         state.album.push(action.payload);
       })
       .addCase(updateAlbum.fulfilled, (state, action) => {

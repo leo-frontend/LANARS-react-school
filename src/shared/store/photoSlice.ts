@@ -52,7 +52,7 @@ export const deletePhoto = createAsyncThunk(
 
 const initialState: IPhotoState = {
   photos: [],
-  loading: 'idle',
+  loading: 'IDLE',
   error: '',
 };
 
@@ -63,7 +63,7 @@ const photoSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(addPhoto.fulfilled, (state, action) => {
-        state.loading = 'succeeded';
+        state.loading = 'SUCCEEDED';
         state.photos.push(action.payload);
       })
       .addCase(updatePhoto.fulfilled, (state, action) => {
