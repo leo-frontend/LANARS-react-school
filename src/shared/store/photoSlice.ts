@@ -41,9 +41,9 @@ export const getPhoto = createAsyncThunk(
 
 export const deletePhoto = createAsyncThunk(
   'photo/deletePhoto',
-  async function (id: number, thunkAPI) {
+  async function (id: (number | undefined)[], thunkAPI) {
     try {
-      return await API.delete(`/api/photos?ids=${id}`) as number;
+      return await API.delete(`/api/photos?ids=${id.join()}`) as number[];
     } catch (error) {
       return thunkAPI.rejectWithValue('Error');
     }
@@ -79,8 +79,10 @@ const photoSlice = createSlice({
         state.photos = Array.isArray(action.payload) ? action.payload : [...state.photos, action.payload];
       })
       .addCase(deletePhoto.fulfilled, (state, action) => {
-        state.loading = 'succeeded';
-        state.photos = state.photos.filter(item => item.id !== action.payload);
+        state.loading = 'SUCCEEDED';
+        state.photos = action.payload.length === 1
+          ? state.photos.filter(item => item.id !== action.payload[0])
+          : state.photos = [];
       })
       .addMatcher(isPending, isPendingAction)
       .addMatcher(isFulfilled, isFulfilledAction)
