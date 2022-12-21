@@ -19,3 +19,8 @@ export interface IAlbumState {
   loading: keyof typeof Status;
   error: string;
 }
+
+export interface IActionState {
+  loading: string;
+  error?: string;
+}
