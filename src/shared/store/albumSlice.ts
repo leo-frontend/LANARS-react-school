@@ -32,7 +32,7 @@ export const getAlbum = createAsyncThunk(
   'photo/getAlbum',
   async function (id: number[], thunkAPI) {
     try {
-      return await API.get(`/api/albums${id === null ? `?ids=${[...id]}` : ''}`) as IAlbum[] | IAlbum;
+      return await API.get(`/api/albums${id.length === 0 ? '' : `?ids=${id.join()}`}`) as IAlbum[] | IAlbum;
     } catch (error) {
       return thunkAPI.rejectWithValue('Error');
     }
@@ -71,8 +71,8 @@ const albumSlice = createSlice({
         state.album = state.album.map(album => album.id === action.payload.id ? action.payload : album);
       })
       .addCase(getAlbum.fulfilled, (state, action) => {
-        state.loading = 'succeeded';
-        state.album = Array.isArray(action.payload) ? action.payload : [...state.album, action.payload];
+        state.loading = 'SUCCEEDED';
+        state.album = Array.isArray(action.payload) ? action.payload : [action.payload];
       })
       .addCase(deleteAlbum.fulfilled, (state, action) => {
         state.loading = 'SUCCEEDED';

@@ -32,7 +32,7 @@ export const getPhoto = createAsyncThunk(
   'photo/getPhoto',
   async function (id: number[], thunkAPI) {
     try {
-      return await API.get(`/api/photos${id === null ? `?ids=${[...id]}` : ''}`) as IPhoto[] | IPhoto;
+      return await API.get(`/api/photos${id.length === 0 ? '' : `?ids=${id.join()}`}`) as IPhoto[] | IPhoto;
     } catch (error) {
       return thunkAPI.rejectWithValue('Error');
     }
@@ -71,8 +71,8 @@ const photoSlice = createSlice({
         state.photos = state.photos.map(photo => photo.id === action.payload.id ? action.payload : photo);
       })
       .addCase(getPhoto.fulfilled, (state, action) => {
-        state.loading = 'succeeded';
-        state.photos = Array.isArray(action.payload) ? action.payload : [...state.photos, action.payload];
+        state.loading = 'SUCCEEDED';
+        state.photos = Array.isArray(action.payload) ? action.payload : [action.payload];
       })
       .addCase(deletePhoto.fulfilled, (state, action) => {
         state.loading = 'SUCCEEDED';
