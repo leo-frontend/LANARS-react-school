@@ -67,12 +67,8 @@ const photoSlice = createSlice({
         state.photos.push(action.payload);
       })
       .addCase(updatePhoto.fulfilled, (state, action) => {
-        const id = state.photos.findIndex(item => item.id === action.payload.id);
-        state.loading = 'succeeded';
-        state.photos[id] = {
-          ...state.photos[id],
-          ...action.payload,
-        };
+        state.loading = 'SUCCEEDED';
+        state.photos = state.photos.map(photo => photo.id === action.payload.id ? action.payload : photo);
       })
       .addCase(getPhoto.fulfilled, (state, action) => {
         state.loading = 'succeeded';

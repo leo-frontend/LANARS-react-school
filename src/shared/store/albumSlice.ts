@@ -67,12 +67,8 @@ const albumSlice = createSlice({
         state.album.push(action.payload);
       })
       .addCase(updateAlbum.fulfilled, (state, action) => {
-        state.loading = 'succeeded';
-        const id = state.album.findIndex(item => item.id === action.payload.id);
-        state.album[id] = {
-          ...state.album[id],
-          ...action.payload,
-        };
+        state.loading = 'SUCCEEDED';
+        state.album = state.album.map(album => album.id === action.payload.id ? action.payload : album);
       })
       .addCase(getAlbum.fulfilled, (state, action) => {
         state.loading = 'succeeded';
