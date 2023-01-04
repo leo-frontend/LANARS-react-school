@@ -6,6 +6,7 @@ import Storage from 'core/services/back-end/Storage';
 import { firstInit } from 'core/services/fistInit';
 import { Provider } from 'react-redux';
 import { store } from 'shared/store';
+import './styles/styles.css';
 
 (async () => {
   await Storage.createObjectStore(['albums', 'photos']);
