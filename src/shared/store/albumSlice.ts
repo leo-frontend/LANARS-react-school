@@ -53,7 +53,7 @@ export const getAlbum = createAsyncThunk(
 
 export const deleteAlbum = createAsyncThunk(
   'photo/deleteAlbum',
-  async function (id: (number | undefined)[], thunkAPI) {
+  async function (id: number[], thunkAPI) {
     try {
       return await API.delete(`/api/albums?ids=${id.join()}`) as number[];
     } catch (error) {
