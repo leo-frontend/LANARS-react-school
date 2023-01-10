@@ -1,6 +1,7 @@
 import { IPhotos } from './../../interfaces/photos';
 import API from 'core/services/API';
-import { createSlice, createAsyncThunk, AnyAction, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import { isPending, isFulfilled, isError } from './functions';
 
 export const getPhoto = createAsyncThunk(
   'photos/getPhoto',
@@ -98,17 +99,5 @@ export const photoSlice = createSlice({
       });
   },
 });
-
-function isPending(action: AnyAction) {
-  return action.type.endsWith('/pending');
-}
-
-function isFulfilled(action: AnyAction) {
-  return action.type.endsWith('/fulfilled');
-}
-
-function isError(action: AnyAction) {
-  return action.type.endsWith('/rejected');
-}
 
 export default photoSlice.reducer;
