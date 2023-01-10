@@ -1,13 +1,19 @@
-import { AnyAction } from '@reduxjs/toolkit';
+import { AsyncThunk, AnyAction } from '@reduxjs/toolkit';
 
-export const isPending = (action: AnyAction): boolean => {
+type GenericAsyncThunk = AsyncThunk<unknown, unknown, any>;
+
+type PendingAction = ReturnType<GenericAsyncThunk['pending']>;
+type RejectedAction = ReturnType<GenericAsyncThunk['rejected']>;
+type FulfilledAction = ReturnType<GenericAsyncThunk['fulfilled']>;
+
+export function isPendingAction(action: AnyAction): action is PendingAction {
   return action.type.endsWith('/pending');
-};
+}
 
-export const isFulfilled = (action: AnyAction): boolean => {
+export function isFulfilledAction(action: AnyAction): action is FulfilledAction {
   return action.type.endsWith('/fulfilled');
-};
+}
 
-export const isError = (action: AnyAction): boolean => {
+export function isRejectedAction(action: AnyAction): action is RejectedAction {
   return action.type.endsWith('/rejected');
-};
+}

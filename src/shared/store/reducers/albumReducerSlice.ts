@@ -1,7 +1,7 @@
 import { IAlbums } from '../../interfaces/albums';
 import API from '../../../core/services/API';
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import { isPending, isFulfilled, isError } from './functions';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { isPendingAction, isFulfilledAction, isRejectedAction } from './functions';
 
 
 export const getAlbum = createAsyncThunk(
@@ -55,7 +55,7 @@ export const deleteAlbum = createAsyncThunk(
 type InitialState = {
   albums: IAlbums[];
   isLoading: 'idle' | 'pending' | 'succeeded' | 'failed';
-  error: string | null;
+  error: string | null | unknown;
 };
 
 const initialState: InitialState = {
@@ -86,15 +86,15 @@ export const albumSlice = createSlice({
       .addCase(deleteAlbum.fulfilled, (state, { payload }) => {
         state.albums = state.albums.filter(album => album.id !== payload.ids);
       })
-      .addMatcher(isPending, (state) => {
+      .addMatcher(isPendingAction, (state) => {
         state.isLoading = 'pending';
         state.error = null;
       })
-      .addMatcher(isError, (state, action: PayloadAction<string>) => {
+      .addMatcher(isRejectedAction, (state, action) => {
         state.isLoading = 'failed';
         state.error = action.payload;
       })
-      .addMatcher(isFulfilled, (state) => {
+      .addMatcher(isFulfilledAction, (state) => {
         state.isLoading = 'succeeded';
         state.error = null;
       });
