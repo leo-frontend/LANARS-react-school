@@ -3,7 +3,14 @@ import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import API from '../../core/services/API';
 import {IAlbum} from '../interfaces';
 import {IAlbumState} from '../interfaces/StateSlices';
-import {isFulfilled, isFulfilledAction, isPending, isPendingAction, isRejected, isRejectedAction} from './helpers';
+import {
+  isFulfilled,
+  isFulfilledAction,
+  isPending,
+  isPendingAction,
+  isRejected,
+  isRejectedAction,
+} from '../helpers/helpersStore';
 
 
 export const addAlbum = createAsyncThunk(
@@ -30,9 +37,14 @@ export const updateAlbum = createAsyncThunk(
 
 export const getAlbum = createAsyncThunk(
   'photo/getAlbum',
-  async function (id: number[], thunkAPI) {
+  async function (id: number[] | undefined, thunkAPI) {
     try {
-      return await API.get(`/api/albums${id.length === 0 ? '' : `?ids=${id.join()}`}`) as IAlbum[] | IAlbum;
+      if (Array.isArray(id) && id.length === 1 && id[0] !== 0) {
+        return await API.get(`/api/albums?ids=${id}`) as IAlbum;
+      }
+      else {
+        return await API.get(`/api/albums${id && id.length > 1 ? `?ids=${id}` : ''}`) as IAlbum[];
+      }
     } catch (error) {
       return thunkAPI.rejectWithValue('Error');
     }

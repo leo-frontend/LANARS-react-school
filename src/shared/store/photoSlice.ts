@@ -3,7 +3,14 @@ import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import API from '../../core/services/API';
 import {IPhoto} from '../interfaces';
 import {IPhotoState} from '../interfaces/StateSlices';
-import {isFulfilled, isFulfilledAction, isPending, isPendingAction, isRejected, isRejectedAction} from './helpers';
+import {
+  isFulfilled,
+  isFulfilledAction,
+  isPending,
+  isPendingAction,
+  isRejected,
+  isRejectedAction,
+} from '../helpers/helpersStore';
 
 
 export const addPhoto = createAsyncThunk(
@@ -30,9 +37,14 @@ export const updatePhoto = createAsyncThunk(
 
 export const getPhoto = createAsyncThunk(
   'photo/getPhoto',
-  async function (id: number[], thunkAPI) {
+  async function (id: number[] | undefined, thunkAPI) {
     try {
-      return await API.get(`/api/photos${id.length === 0 ? '' : `?ids=${id.join()}`}`) as IPhoto[] | IPhoto;
+      if (Array.isArray(id) && id.length === 1 && id[0] !== 0) {
+        return await API.get(`/api/photos?ids=${id}`) as IPhoto;
+      }
+      else {
+        return await API.get(`/api/photos${id && id.length > 1 ? `?ids=${id}` : ''}`) as IPhoto[];
+      }
     } catch (error) {
       return thunkAPI.rejectWithValue('Error');
     }
