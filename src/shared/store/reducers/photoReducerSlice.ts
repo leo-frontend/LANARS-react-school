@@ -15,7 +15,7 @@ export const getPhoto = createAsyncThunk(
   async (ids: number[] = [], { rejectWithValue }) => {
     try {
       if (ids.length === 1) {
-        const response = await API.get(`/api/photos${ids[0]}`) as IPhotos;
+        const response = await API.get(`/api/photos?ids=${ids[0]}`) as IPhotos;
         return response;
       } else {
         const response = await API.get(`/api/photos${ids.length > 1 ? ('?ids=' + ids.join('')) : ''}`) as IPhotos[];

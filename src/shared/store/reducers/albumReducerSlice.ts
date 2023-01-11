@@ -16,7 +16,7 @@ export const getAlbum = createAsyncThunk(
   async (ids: number[] = [], { rejectWithValue }) => {
     try {
       if (ids.length === 1) {
-        const response = await API.get(`/api/albums${ids[0]}`) as IAlbums;
+        const response = await API.get(`/api/albums?ids=${ids[0]}`) as IAlbums;
         return response;
       } else {
         const response = await API.get(`/api/albums${ids.length > 1 ? ('?ids=' + ids.join('')) : ''}`) as IAlbums[];
