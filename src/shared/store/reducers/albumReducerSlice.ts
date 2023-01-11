@@ -15,8 +15,13 @@ export const getAlbum = createAsyncThunk(
   'albums/getAlbum',
   async (ids: number[] = [], { rejectWithValue }) => {
     try {
-      const response = await API.get(`/api/albums${ids.length > 0 ? ('?ids=' + ids.join('')) : ''}`) as IAlbums[] | IAlbums;
-      return response;
+      if (ids.length === 1) {
+        const response = await API.get(`/api/albums${ids[0]}`) as IAlbums;
+        return response;
+      } else {
+        const response = await API.get(`/api/albums${ids.length > 1 ? ('?ids=' + ids.join('')) : ''}`) as IAlbums[];
+        return response;
+      }
     } catch (error: any) {
       return rejectWithValue(error);
     }
@@ -51,7 +56,7 @@ export const deleteAlbum = createAsyncThunk(
   'albums/deleteAlbum',
   async (ids: number[] | number, { rejectWithValue }) => {
     try {
-      await API.delete(`/api/albums?ids=${ids}`) as IAlbums[] | IAlbums;
+      await API.delete(`/api/albums?ids=${ids}`);
       return { ids };
     } catch (error: any) {
       return rejectWithValue(error.message);
