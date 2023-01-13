@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 
-import {Card, CardContent, CardMedia, Grid, Typography} from '@mui/material';
+import {Card, CardContent, CardMedia, Grid, styled, Typography} from '@mui/material';
+import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';
 
 import {getAlbum} from '../shared/store/albumSlice';
 import {useAppDispatch, useAppSelector} from '../shared/hooks/redux_hooks';
@@ -26,12 +27,16 @@ const Albums = (): JSX.Element => {
           <Grid key={item.id} item xs={4} sx={{mt: 2}}>
             <MyLink to={`/albums/${item.id}`}>
               <Card sx={{maxWidth: 280, boxShadow: 'none', cursor: 'pointer'}}>
-                <CardMedia
-                  sx={{borderRadius: '8px'}}
-                  component="img"
-                  height="280"
-                  image={item.photos[0]}
-                  alt={item.title}/>
+                {item.photos[0] ?
+                  <CardMedia
+                    sx={{borderRadius: '8px'}}
+                    component="img"
+                    height="280"
+                    image={item.photos[0]}
+                    alt={item.title}/> :
+                  <BlankAlbum>
+                    <InsertPhotoOutlinedIcon sx={{color: '#E5EDF2', width: 125, height: 125}}/>
+                  </BlankAlbum>}
                 <CardContent sx={{p: 0}}>
                   <Typography variant="h5" component="div">
                     {item.description}
