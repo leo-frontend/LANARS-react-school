@@ -9,6 +9,15 @@ import {MyLink} from 'styles/styles.';
 import NotFound from '../shared/components/NotFound';
 import HeaderAlbums from '../shared/components/HeaderAlbums';
 
+const BlankAlbum = styled(CardMedia)(() => ({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  borderRadius: '8px',
+  height: '280px',
+  backgroundColor: '#F5F5F5',
+}));
+
 
 const Albums = (): JSX.Element => {
   const dispatch = useAppDispatch();
