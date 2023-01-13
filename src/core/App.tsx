@@ -1,8 +1,6 @@
 import React, {useEffect} from 'react';
 
-import {getPhoto} from '../shared/store/photoSlice';
-import {getAlbum} from '../shared/store/albumSlice';
-import {useAppDispatch} from '../shared/hooks/redux_hooks';
+import {theme} from '../styles/theme';
 
 const App = (): JSX.Element => {
   const dispatch = useAppDispatch();
