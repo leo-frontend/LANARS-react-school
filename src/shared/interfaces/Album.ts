@@ -1,7 +1,7 @@
 export interface IAlbum {
     title: string;
     description: string;
-    photos: number[];
+    photos: string[];
     date: number;
     id?: number;
 }

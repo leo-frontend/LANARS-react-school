@@ -11,12 +11,14 @@ const NotFoundPage = (): JSX.Element => {
       <ReportOutlinedIcon sx={{color: '#E5EDF2',width: 200,height: 200}}/>
       <Typography
         variant={'h1'}
-        component={'div'}>
+        component={'div'}
+      >
         ERROR
       </Typography>
       <Typography
         variant={'body1'}
-        component={'div'}>
+        component={'div'}
+      >
         Page not found
       </Typography>
     </Stack>
