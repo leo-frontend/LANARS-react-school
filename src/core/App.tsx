@@ -20,7 +20,7 @@ const App = (): JSX.Element => {
           <Route path={AllPath.ALBUM} element={<Albums/>}/>
           <Route path={AllPath.NOT_FOUND_PAGE} element={<NotFoundPage/>}/>
         </Route>
-       </Routes>
+      </Routes>
     </ThemeProvider>
   );
 };
