@@ -36,7 +36,7 @@ const Albums = (): JSX.Element => {
           <Grid key={item.id} item xs={4} sx={{mt: 2}}>
             <MyLink to={`/albums/${item.id}`}>
               <Card sx={{maxWidth: 280, boxShadow: 'none', cursor: 'pointer'}}>
-                {item.photos[0] ?
+                {item.photos[0] && typeof item.photos[0] === 'string' ?
                   <CardMedia
                     sx={{borderRadius: '8px'}}
                     component="img"
