@@ -31,7 +31,7 @@ const Albums = (): JSX.Element => {
     <Grid container direction="row">
       <HeaderAlbums/>
       {album.length === 0
-        ? <NotFound name={'album'} svgSwitch={false}/>
+        ? <NotFound name="album" svgSwitch={false}/>
         : album.map((item) => (
           <Grid key={item.id} item xs={4} sx={{mt: 2}}>
             <MyLink to={`/albums/${item.id}`}>
@@ -50,7 +50,7 @@ const Albums = (): JSX.Element => {
                   <Typography variant="h5" component="div">
                     {item.description}
                   </Typography>
-                  <Typography variant={'subtitle1'}>
+                  <Typography variant="subtitle1">
                     {item.photos.length} images
                   </Typography>
                 </CardContent>

@@ -6,10 +6,10 @@ import IconReact from './IconReact';
 
 const Header = (): JSX.Element => {
   return (
-    <AppBar sx={{boxShadow: 'none'}} position={'static'} color={'transparent'}>
+    <AppBar sx={{boxShadow: 'none'}} position="static" color="transparent">
       <Toolbar>
         <IconReact/>
-        <Typography variant={'h1'} component={'h1'} sx={{mt: 1}}>
+        <Typography variant="h1" component="h1" sx={{mt: 1}}>
           React school
         </Typography>
       </Toolbar>

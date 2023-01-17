@@ -20,21 +20,21 @@ const HeaderAlbums = (): JSX.Element => {
         mb: 2,
       }}
       >
-        <Typography variant={'h1'} component={'h4'}>
+        <Typography variant="h1" component="h4">
           Albums
         </Typography>
         <Box>
-          <MyLink to={'/albums/createAlbum'}>
+          <MyLink to="/albums/createAlbum">
             <Button variant="text">
               <AddIcon/>
-              <Typography variant={'button'}>
+              <Typography variant="button">
                 CREATE ALBUM
               </Typography>
             </Button>
           </MyLink>
           <Button variant="text">
             <SwapVertIcon/>
-            <Typography variant={'button'}>
+            <Typography variant="button">
               BY DATE ADDED
             </Typography>
           </Button>

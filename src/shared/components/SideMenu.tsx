@@ -25,16 +25,16 @@ const SideMenuBtn = styled(IconButton)(() => ({
 const SideMenu = (): JSX.Element => {
   return (
     <Box sx={{margin: '24px 40px 0 40px'}}>
-      <MyLink to={'/'}>
+      <MyLink to="/">
         <SideMenuBtn>
           <InsertPhotoOutlinedIcon/>
-          <Typography variant={'body1'} component={'span'} >All photos</Typography>
+          <Typography variant="body1" component="span" >All photos</Typography>
         </SideMenuBtn>
       </MyLink>
-      <MyLink to={'/albums'}>
+      <MyLink to="/albums">
         <SideMenuBtn>
           <PhotoAlbumOutlinedIcon/>
-          <Typography variant={'body1'} component={'span'} >Albums</Typography>
+          <Typography variant="body1" component="span" >Albums</Typography>
         </SideMenuBtn>
       </MyLink>
     </Box>

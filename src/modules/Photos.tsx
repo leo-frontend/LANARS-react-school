@@ -19,7 +19,7 @@ const Photos = (): JSX.Element => {
   return (
     <Container sx={{mt: 3}}>
       {photo.photos.length === 0 ?
-        <NotFound name={'photo'} svgSwitch={true}/> :
+        <NotFound name="photo" svgSwitch={true}/> :
         <>
           <ImageList sx={{mr: 5}} cols={6} gap={8} rowHeight={150}>
             {photo.photos.map((item) => (
