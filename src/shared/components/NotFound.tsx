@@ -4,7 +4,7 @@ import {Container, styled, Typography} from '@mui/material';
 import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';
 import PhotoAlbumOutlinedIcon from '@mui/icons-material/PhotoAlbumOutlined';
 
-import {MyLink} from '../../styles/styles.';
+import {colors} from '../../styles/variables';
 
 
 const MainBody = styled(Container)(() => ({
@@ -20,13 +20,13 @@ const NotFound = ({name, svgSwitch}: { name: string; svgSwitch: boolean }): JSX.
   return (
     <MainBody>
       {svgSwitch
-        ? <InsertPhotoOutlinedIcon sx={{color: '#E5EDF2', width: 280, height: 280}}/>
-        : <PhotoAlbumOutlinedIcon sx={{color: '#E5EDF2', width: 280, height: 280}}/>
+        ? <InsertPhotoOutlinedIcon sx={{color: colors.light.colorIcon, width: 280, height: 280}}/>
+        : <PhotoAlbumOutlinedIcon sx={{color: colors.light.colorIcon, width: 280, height: 280}}/>
       }
       <Typography
         variant="subtitle1"
         component="div"
-        sx={{color: '#6C7276', textAlign: 'center', m: 2, width: 235}}
+        sx={{color: colors.light.textNotFound, textAlign: 'center', m: 2, width: 235}}
       >
         There are no {name}s yet. Please click
         <MyLink to="#" sx={{fontWeight: 600, color: '#6C7276'}}> Upload {name}

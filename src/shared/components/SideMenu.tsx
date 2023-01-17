@@ -6,6 +6,7 @@ import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';
 import PhotoAlbumOutlinedIcon from '@mui/icons-material/PhotoAlbumOutlined';
 
 import {AllPath} from '../constants/path';
+import {colors} from '../../styles/variables';
 
 
 const SideMenuBtn = styled(MenuItem)(() => ({
@@ -13,11 +14,11 @@ const SideMenuBtn = styled(MenuItem)(() => ({
   margin: 8,
   padding: 8,
   borderRadius: 48,
-  color: '#3F4A53',
+  color: colors.light.text,
   ['&:hover, &.Mui-selected']: {
     borderRadius: 48,
-    color: '#1786ED',
-    backgroundColor: '#1D8CF41F',
+    color: colors.light.primary,
+    backgroundColor: colors.light.bgBtnSideMenu,
   },
   ['&.MuiMenuItem-root a']: {
     display: 'flex',

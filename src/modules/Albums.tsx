@@ -8,6 +8,8 @@ import {useAppDispatch, useAppSelector} from '../shared/hooks/redux_hooks';
 import {MyLink} from 'styles/styles.';
 import NotFound from '../shared/components/NotFound';
 import HeaderAlbums from '../shared/components/HeaderAlbums';
+import {colors} from '../styles/variables';
+
 
 const BlankAlbum = styled(CardMedia)(() => ({
   display: 'flex',
@@ -15,7 +17,7 @@ const BlankAlbum = styled(CardMedia)(() => ({
   alignItems: 'center',
   borderRadius: 8,
   height: 280,
-  backgroundColor: '#F5F5F5',
+  backgroundColor: colors.light.bgAlbumNotFound,
 }));
 
 
@@ -44,7 +46,7 @@ const Albums = (): JSX.Element => {
                     image={item.photos[0]}
                     alt={item.title}/> :
                   <BlankAlbum>
-                    <InsertPhotoOutlinedIcon sx={{color: '#E5EDF2', width: 168, height: 168}}/>
+                    <InsertPhotoOutlinedIcon sx={{color: colors.light.colorIcon, width: 168, height: 168}}/>
                   </BlankAlbum>}
                 <CardContent sx={{p: 0}}>
                   <Typography variant="h5" component="div">
