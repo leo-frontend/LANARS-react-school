@@ -13,8 +13,8 @@ const BlankAlbum = styled(CardMedia)(() => ({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  borderRadius: '8px',
-  height: '280px',
+  borderRadius: 8,
+  height: 280,
   backgroundColor: '#F5F5F5',
 }));
 
@@ -44,7 +44,7 @@ const Albums = (): JSX.Element => {
                     image={item.photos[0]}
                     alt={item.title}/> :
                   <BlankAlbum>
-                    <InsertPhotoOutlinedIcon sx={{color: '#E5EDF2', width: 125, height: 125}}/>
+                    <InsertPhotoOutlinedIcon sx={{color: '#E5EDF2', width: 168, height: 168}}/>
                   </BlankAlbum>}
                 <CardContent sx={{p: 0}}>
                   <Typography variant="h5" component="div">
