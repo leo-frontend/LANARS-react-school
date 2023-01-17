@@ -21,11 +21,11 @@ const Photos = (): JSX.Element => {
       {photo.photos.length === 0 ?
         <NotFound name="photo" svgSwitch={true}/> :
         <>
-          <ImageList sx={{mr: 5}} cols={6} gap={8} rowHeight={150}>
+          <ImageList sx={{mr: 5}} cols={6} gap={8} rowHeight={152}>
             {photo.photos.map((item) => (
               <ImageListItem key={item.id}>
                 <img
-                  style={{borderRadius: '10px'}}
+                  style={{borderRadius: '8px', width: '152px'}}
                   src={`data:${item.type};base64,${item.image}`}
                   alt={item.description}/>
               </ImageListItem>
