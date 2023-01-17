@@ -1,43 +1,55 @@
-import React from 'react';
+import React, {useState} from 'react';
+import {Link} from 'react-router-dom';
 
-import {Box, IconButton, styled, Typography} from '@mui/material';
+import {MenuItem, MenuList, styled} from '@mui/material';
 import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';
 import PhotoAlbumOutlinedIcon from '@mui/icons-material/PhotoAlbumOutlined';
 
-import {MyLink} from '../../styles/styles.';
+import {AllPath} from '../constants/path';
 
-const SideMenuBtn = styled(IconButton)(() => ({
-  justifyContent: 'start',
-  paddingLeft: 40,
-  width: 240,
-  height: 48,
+
+const SideMenuBtn = styled(MenuItem)(() => ({
+  width: 168,
+  margin: 8,
+  padding: 8,
+  borderRadius: 48,
   color: '#3F4A53',
-  ['&:hover, :focus']: {
-    borderRadius: 40,
+  ['&:hover, &.Mui-selected']: {
+    borderRadius: 48,
     color: '#1786ED',
     backgroundColor: '#1D8CF41F',
   },
-  ['span']: {
-    paddingLeft: 16,
+  ['&.MuiMenuItem-root a']: {
+    display: 'flex',
+    textDecoration: 'none',
+    color: 'inherit',
   },
 }));
 
+
 const SideMenu = (): JSX.Element => {
+  const [route, setRoute] = useState<string>(AllPath.ALL_PHOTO);
   return (
-    <Box sx={{margin: '24px 40px 0 40px'}}>
-      <MyLink to="/">
-        <SideMenuBtn>
-          <InsertPhotoOutlinedIcon/>
-          <Typography variant="body1" component="span" >All photos</Typography>
-        </SideMenuBtn>
-      </MyLink>
-      <MyLink to="/albums">
-        <SideMenuBtn>
-          <PhotoAlbumOutlinedIcon/>
-          <Typography variant="body1" component="span" >Albums</Typography>
-        </SideMenuBtn>
-      </MyLink>
-    </Box>
+    <MenuList sx={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', p: 4}}>
+      <SideMenuBtn
+        selected={route === AllPath.ALL_PHOTO && true}
+        onClick={() => setRoute(AllPath.ALL_PHOTO)}
+      >
+        <Link to="/">
+          <InsertPhotoOutlinedIcon sx={{p: '0 8px 0 16px'}}/>
+          All photos
+        </Link>
+      </SideMenuBtn>
+      <SideMenuBtn
+        selected={route === AllPath.ALBUM && true}
+        onClick={() => setRoute(AllPath.ALBUM)}
+      >
+        <Link to="/albums">
+          <PhotoAlbumOutlinedIcon sx={{p: '0 8px 0 16px'}}/>
+          Albums
+        </Link>
+      </SideMenuBtn>
+    </MenuList>
   );
 };
 
