@@ -20,8 +20,8 @@ const NotFound = ({name, svgSwitch}: { name: string; svgSwitch: boolean }): JSX.
   return (
     <MainBody>
       {svgSwitch
-        ? <InsertPhotoOutlinedIcon sx={{color: '#E5EDF2', width: 200, height: 200}}/>
-        : <PhotoAlbumOutlinedIcon sx={{color: '#E5EDF2', width: 200, height: 200}}/>
+        ? <InsertPhotoOutlinedIcon sx={{color: '#E5EDF2', width: 280, height: 280}}/>
+        : <PhotoAlbumOutlinedIcon sx={{color: '#E5EDF2', width: 280, height: 280}}/>
       }
       <Typography
         variant="subtitle1"

@@ -8,12 +8,12 @@ import {MyLink} from '../../styles/styles.';
 
 const SideMenuBtn = styled(IconButton)(() => ({
   justifyContent: 'start',
-  paddingLeft: 16,
-  width: 164,
+  paddingLeft: 40,
+  width: 240,
   height: 48,
   color: '#3F4A53',
   ['&:hover, :focus']: {
-    borderRadius: '40px',
+    borderRadius: 40,
     color: '#1786ED',
     backgroundColor: '#1D8CF41F',
   },

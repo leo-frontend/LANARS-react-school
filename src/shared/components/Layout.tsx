@@ -13,7 +13,7 @@ const Layout = (): JSX.Element => {
       <Header/>
       <Box sx={{
         display: 'grid',
-        gridTemplateColumns: '244px 1036px',
+        gridTemplateColumns: '346px 1038px',
         p: 0,
       }}
       >
