@@ -7,10 +7,9 @@ import {colors} from '../styles/variables';
 
 
 const NotFoundPage = (): JSX.Element => {
-
   return (
-    <Stack spacing={2} sx={{height: '50vw', alignItems: 'center', justifyContent: 'center'}}>
-      <ReportOutlinedIcon sx={{color: '#E5EDF2',width: 200,height: 200}}/>
+    <Stack spacing={2} sx={{height: '30vw', alignItems: 'center', justifyContent: 'center'}}>
+      <ReportOutlinedIcon sx={{color: colors.light.colorIcon, width: '200px', height: '200px'}}/>
       <Typography
         variant="h1"
         component="div"
