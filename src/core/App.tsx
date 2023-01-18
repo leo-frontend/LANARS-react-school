@@ -1,21 +1,27 @@
-import React, {useEffect} from 'react';
+import React from 'react';
+import {Route, Routes} from 'react-router';
 
-import {getPhoto} from '../shared/store/photoSlice';
-import {getAlbum} from '../shared/store/albumSlice';
-import {useAppDispatch} from '../shared/hooks/redux_hooks';
+import {ThemeProvider} from '@mui/material';
+
+import {AllPath} from '../shared/constants/path';
+import Photos from '../modules/Photos';
+import Albums from '../modules/Albums';
+import Layout from '../shared/components/Layout';
+import NotFoundPage from '../modules/NotFoundPage';
+import {theme} from '../styles/theme';
+
 
 const App = (): JSX.Element => {
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(getPhoto([]));
-    dispatch(getAlbum([]));
-  }, []);
-
-
   return (
-    <div className="App">
-    </div>
+    <ThemeProvider theme={theme}>
+      <Routes>
+        <Route path={AllPath.ALL_PHOTO} element={<Layout/>}>
+          <Route index element={<Photos/>}/>
+          <Route path={AllPath.ALBUM} element={<Albums/>}/>
+          <Route path={AllPath.NOT_FOUND_PAGE} element={<NotFoundPage/>}/>
+        </Route>
+      </Routes>
+    </ThemeProvider>
   );
 };
 
