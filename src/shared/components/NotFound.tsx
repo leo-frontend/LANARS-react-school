@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 import {Container, styled, Typography} from '@mui/material';
 import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';
@@ -29,8 +30,8 @@ const NotFound = ({name, svgSwitch}: { name: string; svgSwitch: boolean }): JSX.
         sx={{color: colors.light.textNotFound, textAlign: 'center', m: 2, width: 235}}
       >
         There are no {name}s yet. Please click
-        <MyLink to="#" sx={{fontWeight: 600, color: '#6C7276'}}> Upload {name}
-        </MyLink> to add
+        <Link style={{textDecoration: 'none', fontWeight: 600, color: 'inherit'}} to="#"> Upload {name}
+        </Link> to add
       </Typography>
     </MainBody>
   );

@@ -1,15 +1,14 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 import {Box, Button, Divider, Grid, Typography} from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import SwapVertIcon from '@mui/icons-material/SwapVert';
 
-import {MyLink} from 'styles/styles.';
+import {AllPath} from '../constants/path';
 
 
 const HeaderAlbums = (): JSX.Element => {
-
-
   return (
     <Grid item xs={12}>
       <Box sx={{
@@ -24,14 +23,14 @@ const HeaderAlbums = (): JSX.Element => {
           Albums
         </Typography>
         <Box>
-          <MyLink to="/albums/createAlbum">
+          <Link style={{textDecoration: 'none'}} to={AllPath.CREATE_ALBUM}>
             <Button variant="text">
               <AddIcon/>
               <Typography variant="button">
                 CREATE ALBUM
               </Typography>
             </Button>
-          </MyLink>
+          </Link>
           <Button variant="text">
             <SwapVertIcon/>
             <Typography variant="button">
