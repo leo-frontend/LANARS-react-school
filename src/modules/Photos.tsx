@@ -5,6 +5,7 @@ import {Container, ImageList, ImageListItem} from '@mui/material';
 import {getPhoto} from '../shared/store/photoSlice';
 import {useAppDispatch, useAppSelector} from '../shared/hooks/redux_hooks';
 import NotFound from '../shared/components/NotFound';
+import UploadButton from 'shared/components/UploadButton/UploadButton';
 
 
 const Photos = (): JSX.Element => {
@@ -31,6 +32,7 @@ const Photos = (): JSX.Element => {
               </ImageListItem>
             ))}
           </ImageList>
+          <UploadButton nameBtn="Upload photo"/>
         </>
       }
     </Container>
