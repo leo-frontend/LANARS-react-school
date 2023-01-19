@@ -43,9 +43,7 @@ const UploadButton = ({nameBtn}: {nameBtn: string}): JSX.Element => {
       <Fab
         sx={{
           position: 'fixed',
-          top: 638,
-          left: 1048,
-          width: 200,
+          bottom: 40,
           height: 40,
           borderRadius: '4px'}}
         onClick={handlerPick}
