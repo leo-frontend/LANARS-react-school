@@ -14,7 +14,7 @@ const HeaderAlbums = (): JSX.Element => {
       <Box sx={{
         display: 'flex',
         justifyContent: 'space-between',
-        m: '24px 24px 16px 24px'
+        m: '24px 24px 16px 24px',
       }}>
         <Typography variant="h1" component="h4">
           Albums
