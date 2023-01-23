@@ -1,10 +1,17 @@
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import NoPhotos from './NoPhotos';
-import { useAppSelector } from 'shared/hooks';
+import { useAppDispatch, useAppSelector } from 'shared/hooks';
+import { getPhoto } from 'shared/store/reducers/photoReducerSlice';
 
 export const AllPhotos: React.FC = () => {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getPhoto([]));
+  }, [dispatch]);
+
   const photos = useAppSelector((photo) => photo.photos.photos);
   return (
     photos.length > 0 ?

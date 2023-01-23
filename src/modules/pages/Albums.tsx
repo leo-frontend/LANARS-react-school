@@ -1,10 +1,18 @@
+import React, { useEffect } from 'react';
 import { Divider, Box, Typography, Grid } from '@mui/material';
 import CardAlbum from 'modules/components/CardAlbum';
-import { useAppSelector } from 'shared/hooks';
+import { useAppDispatch, useAppSelector } from 'shared/hooks';
+import { getAlbum } from 'shared/store/reducers/albumReducerSlice';
 import NoAlbums from './NoAlbums';
 
 export const Albums: React.FC = () => {
   const albums = useAppSelector((album) => album.albums.albums);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getAlbum([]));
+  }, [dispatch]);
+
   return (
     albums.length > 0 ?
       <Box sx={{width: '100%', p: 0 }}>
