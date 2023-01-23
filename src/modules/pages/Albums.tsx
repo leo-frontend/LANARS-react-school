@@ -24,7 +24,7 @@ export const Albums: React.FC = () => {
 
         <Box sx={{ mr: '46px' }}>
           <Grid container rowSpacing={4} columnSpacing={3}>
-            {albums.map((_, index) => (
+            {albums.map((album, index) => (
               <Grid item xs key={index}>
                 <CardAlbum />
               </Grid>

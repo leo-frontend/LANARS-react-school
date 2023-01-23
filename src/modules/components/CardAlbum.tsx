@@ -22,7 +22,7 @@ const CardAlbum: React.FC = () => {
             color="primary.dark"
             fontWeight={500}
             fontSize={16}
-            marginBottom={'7px'}
+            marginBottom={1}
           >
             {albums.map(album => album.description)}
           </Typography>

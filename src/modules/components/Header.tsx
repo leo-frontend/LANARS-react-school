@@ -13,7 +13,7 @@ const Header: React.FC = () => {
         paddingLeft: 2,
         paddingRight: 2,
         boxShadow: 'none',
-        borderBottom: '1px solid #E5EDF2',
+        borderBottom: '1px solid theme.palette.secondary.light',
       }}
       position="fixed"
       >

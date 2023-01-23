@@ -95,7 +95,7 @@ export const SideMenu: React.FC = () => {
             mr: '142px',
             width: 164,
             '&& .Mui-selected, && .MuiButtonBase-root:hover': {
-              bgcolor: 'rgba(29, 140, 244, 0.12)',
+              bgcolor: theme.palette.secondary.main,
               color: theme.palette.primary.main,
               borderRadius: '44px',
               '& .MuiSvgIcon-root, & .MuiTypography-root': {
