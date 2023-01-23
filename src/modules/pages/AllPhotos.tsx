@@ -21,8 +21,8 @@ export const AllPhotos: React.FC = () => {
               }}}
           >
             <img
-              src={`${photo.image}?w=248&fit=crop&auto=format`}
-              srcSet={`${photo.image}?w=248&fit=crop&auto=format&dpr=2 2x`}
+              src={`data:image/jpeg;base64,${photo.image}`}
+              srcSet={`data:image/jpeg;base64,${photo.image}`}
               alt={photo.description}
               loading="lazy"/>
           </ImageListItem>
