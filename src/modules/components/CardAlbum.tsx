@@ -4,6 +4,8 @@ import { useAppSelector } from 'shared/hooks';
 const CardAlbum: React.FC = () => {
 
   const albums = useAppSelector((album) => album.albums.albums);
+  const photos = useAppSelector((photo) => photo.photos);
+  const coverImage = photos.photos[0].image;
 
   return (
     <Card variant="outlined" sx={{ maxWidth: 280, mt: 2, border: 'none' }}>
@@ -11,8 +13,8 @@ const CardAlbum: React.FC = () => {
         <CardMedia
           component="img"
           height="280"
-          src="https://via.placeholder.com/280x280"
-          alt="test"
+          src={`data:image/jpeg;base64,${coverImage}`}
+          alt="Album cover"
           sx={{ borderRadius: 2 }}/>
         <CardContent sx={{ p: 0, pt: 2 }}>
           <Typography
