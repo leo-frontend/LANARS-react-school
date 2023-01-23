@@ -22,7 +22,7 @@ const NoAlbums: React.FC = () => {
         sx={{fontSize: '1rem', lineHeight: '1.5rem', letterSpacing: '0.2px',textAlign: 'center'}}
         color="primary.light"
       >
-        Album is empty
+        There are no albums yet. Please click <b>Create album</b> to add
       </Typography>
       <Button disabled startIcon={<AddPhotoAlternateOutlined />}>
         ADD PHOTO
