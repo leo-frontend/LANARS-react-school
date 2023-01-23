@@ -1,14 +1,27 @@
 import { IAlbums } from '../../interfaces/albums';
 import API from '../../../core/services/API';
-import { createSlice, createAsyncThunk, AnyAction, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import {
+  isPendingAction,
+  isFulfilledAction,
+  isRejectedAction,
+  handlePendingAction,
+  handleFulfilledAction,
+  handleRejectedAction,
+} from './statusReducers';
 
 
 export const getAlbum = createAsyncThunk(
   'albums/getAlbum',
   async (ids: number[] = [], { rejectWithValue }) => {
     try {
-      const response = await API.get(`/api/albums${ids.length > 0 ? ('?ids=' + ids.join('')) : ''}`) as IAlbums[] | IAlbums;
-      return response;
+      if (ids.length === 1) {
+        const response = await API.get(`/api/albums?ids=${ids[0]}`) as IAlbums;
+        return response;
+      } else {
+        const response = await API.get(`/api/albums${ids.length > 1 ? ('?ids=' + ids.join('')) : ''}`) as IAlbums[];
+        return response;
+      }
     } catch (error: any) {
       return rejectWithValue(error);
     }
@@ -43,7 +56,7 @@ export const deleteAlbum = createAsyncThunk(
   'albums/deleteAlbum',
   async (ids: number[] | number, { rejectWithValue }) => {
     try {
-      await API.delete(`/api/albums?ids=${ids}`) as IAlbums[] | IAlbums;
+      await API.delete(`/api/albums?ids=${ids}`);
       return { ids };
     } catch (error: any) {
       return rejectWithValue(error.message);
@@ -85,31 +98,10 @@ export const albumSlice = createSlice({
       .addCase(deleteAlbum.fulfilled, (state, { payload }) => {
         state.albums = state.albums.filter(album => album.id !== payload.ids);
       })
-      .addMatcher(isPending, (state) => {
-        state.isLoading = 'pending';
-        state.error = null;
-      })
-      .addMatcher(isError, (state, action: PayloadAction<string>) => {
-        state.isLoading = 'failed';
-        state.error = action.payload;
-      })
-      .addMatcher(isFulfilled, (state) => {
-        state.isLoading = 'succeeded';
-        state.error = null;
-      });
+      .addMatcher(isPendingAction, handlePendingAction)
+      .addMatcher(isRejectedAction, handleRejectedAction)
+      .addMatcher(isFulfilledAction, handleFulfilledAction);
   },
 });
-
-function isPending(action: AnyAction) {
-  return action.type.endsWith('/pending');
-}
-
-function isFulfilled(action: AnyAction) {
-  return action.type.endsWith('/fulfilled');
-}
-
-function isError(action: AnyAction) {
-  return action.type.endsWith('/rejected');
-}
 
 export default albumSlice.reducer;

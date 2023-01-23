@@ -1,13 +1,26 @@
 import { IPhotos } from './../../interfaces/photos';
 import API from 'core/services/API';
-import { createSlice, createAsyncThunk, AnyAction, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import {
+  isPendingAction,
+  isFulfilledAction,
+  isRejectedAction,
+  handleFulfilledAction,
+  handleRejectedAction,
+  handlePendingAction,
+} from './statusReducers';
 
 export const getPhoto = createAsyncThunk(
   'photos/getPhoto',
   async (ids: number[] = [], { rejectWithValue }) => {
     try {
-      const response = await API.get(`/api/photos${ids.length > 0 ? ('?ids=' + ids.join('')) : ''}`) as IPhotos[] | IPhotos;
-      return response;
+      if (ids.length === 1) {
+        const response = await API.get(`/api/photos?ids=${ids[0]}`) as IPhotos;
+        return response;
+      } else {
+        const response = await API.get(`/api/photos${ids.length > 1 ? ('?ids=' + ids.join('')) : ''}`) as IPhotos[];
+        return response;
+      }
     } catch (error: any) {
       return rejectWithValue(error);
     }
@@ -42,7 +55,7 @@ export const deletePhoto = createAsyncThunk(
   'photos/deletePhoto',
   async (ids: number[] | number, { rejectWithValue }) => {
     try {
-      await API.delete(`/api/photos?ids=${ids}`) as IPhotos[] | IPhotos;
+      await API.delete(`/api/photos?ids=${ids}`);
       return { ids };
     } catch (error: any) {
       return rejectWithValue(error.message);
@@ -84,31 +97,10 @@ export const photoSlice = createSlice({
       .addCase(deletePhoto.fulfilled, (state, { payload }) => {
         state.photos = state.photos.filter(photo => photo.id !== payload.ids);
       })
-      .addMatcher(isPending, (state) => {
-        state.isLoading = 'pending';
-        state.error = null;
-      })
-      .addMatcher(isError, (state, action: PayloadAction<string>) => {
-        state.isLoading = 'failed';
-        state.error = action.payload;
-      })
-      .addMatcher(isFulfilled, (state) => {
-        state.isLoading = 'succeeded';
-        state.error = null;
-      });
+      .addMatcher(isPendingAction, handlePendingAction)
+      .addMatcher(isRejectedAction, handleRejectedAction)
+      .addMatcher(isFulfilledAction, handleFulfilledAction);
   },
 });
-
-function isPending(action: AnyAction) {
-  return action.type.endsWith('/pending');
-}
-
-function isFulfilled(action: AnyAction) {
-  return action.type.endsWith('/fulfilled');
-}
-
-function isError(action: AnyAction) {
-  return action.type.endsWith('/rejected');
-}
 
 export default photoSlice.reducer;
