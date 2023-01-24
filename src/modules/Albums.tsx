@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {Link} from 'react-router-dom';
 
-import {Card, CardContent, CardMedia, Grid, styled, Typography} from '@mui/material';
+import {Box, Card, CardContent, CardMedia, styled, Typography} from '@mui/material';
 import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';
 
 import {getAlbum} from '../shared/store/albumSlice';
@@ -30,13 +30,13 @@ const Albums = (): JSX.Element => {
   }, []);
 
   return (
-    <Grid container direction="row">
+    <Box>
       <HeaderAlbums/>
-      {album.length === 0
-        ? <NotFound name="album" svgSwitch={false}/>
-        : album.map((item) => (
-          <Grid key={item.id} item xs={4} sx={{mt: 2}}>
-            <Link style={{textDecoration: 'none'}} to={`/albums/${item.id}`}>
+      {album.length === 0 ?
+        <NotFound name="album" svgSwitch={false}/> :
+        <Box sx={{display: 'flex', flexWrap: 'wrap', gap: 3, mt: 2}}>
+          {album.map((item) => (
+            <Link key={item.id} style={{textDecoration: 'none'}} to={`/albums/${item.id}`}>
               <Card sx={{maxWidth: 280, boxShadow: 'none', cursor: 'pointer'}}>
                 {item.photos[0] && typeof item.photos[0] === 'string' ?
                   <CardMedia
@@ -58,9 +58,10 @@ const Albums = (): JSX.Element => {
                 </CardContent>
               </Card>
             </Link>
-          </Grid>
-        ))}
-    </Grid>
+          ))}
+        </Box>
+      }
+    </Box>
   );
 };
 

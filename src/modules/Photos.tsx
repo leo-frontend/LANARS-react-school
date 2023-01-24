@@ -1,10 +1,11 @@
 import React, {useEffect} from 'react';
 
-import {Container, ImageList, ImageListItem} from '@mui/material';
+import {Box, ImageListItem, Stack} from '@mui/material';
 
 import {getPhoto} from '../shared/store/photoSlice';
 import {useAppDispatch, useAppSelector} from '../shared/hooks/redux_hooks';
 import NotFound from '../shared/components/NotFound';
+import UploadButton from 'shared/components/UploadButton/UploadButton';
 
 
 const Photos = (): JSX.Element => {
@@ -17,23 +18,26 @@ const Photos = (): JSX.Element => {
 
 
   return (
-    <Container sx={{mt: 3}}>
+    <>
       {photo.photos.length === 0 ?
         <NotFound name="photo" svgSwitch={true}/> :
-        <>
-          <ImageList cols={6} gap={8} rowHeight={152}>
+        <Stack>
+          <Box sx={{display: 'flex', flexWrap: 'wrap', gap: 1, mt: 3}}>
             {photo.photos.map((item) => (
               <ImageListItem key={item.id}>
                 <img
-                  style={{borderRadius: 8, width: 152}}
+                  style={{borderRadius: 8, width: 142, height: 142}}
                   src={`data:${item.type};base64,${item.image}`}
                   alt={item.description}/>
               </ImageListItem>
             ))}
-          </ImageList>
-        </>
+          </Box>
+          <Box sx={{display: 'flex', justifyContent: 'flex-end', pr: 5}}>
+            <UploadButton nameBtn="Upload photo"/>
+          </Box>
+        </Stack>
       }
-    </Container>
+    </>
   );
 };
 export default Photos;

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-import {Box, Button, Divider, Grid, Typography} from '@mui/material';
+import {Box, Button, Divider, Typography} from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import SwapVertIcon from '@mui/icons-material/SwapVert';
 
@@ -10,15 +10,12 @@ import {AllPath} from '../constants/path';
 
 const HeaderAlbums = (): JSX.Element => {
   return (
-    <Grid item xs={12}>
+    <>
       <Box sx={{
         display: 'flex',
         justifyContent: 'space-between',
-        alignItems: 'center',
-        m: 3,
-        mb: 2,
-      }}
-      >
+        m: '24px 24px 16px 24px',
+      }}>
         <Typography variant="h1" component="h4">
           Albums
         </Typography>
@@ -40,7 +37,7 @@ const HeaderAlbums = (): JSX.Element => {
         </Box>
       </Box>
       <Divider/>
-    </Grid>
+    </>
   );
 };
 
