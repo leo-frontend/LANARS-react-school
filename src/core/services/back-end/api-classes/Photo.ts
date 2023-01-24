@@ -49,7 +49,7 @@ export class PhotoEntity {
   type = '';
   id?: number;
   isFavorite = false;
-  
+
   constructor(data: PhotoEntity) {
     this.date = data.date;
     this.description = data.description || '';

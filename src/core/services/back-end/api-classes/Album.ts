@@ -40,7 +40,7 @@ export class Album extends BackEndAbstract<AlbumEntity> {
 export class AlbumEntity {
   title = '';
   description = '';
-  photos = []; 
+  photos = [];
   date: number;
   id?: number;
 
