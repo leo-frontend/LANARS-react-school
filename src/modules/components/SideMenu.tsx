@@ -11,12 +11,13 @@ import {
   MemoryRouter,
   Route,
   Routes,
+  useLocation,
 } from 'react-router-dom';
 import { StaticRouter } from 'react-router-dom/server';
 import { ListItemButton } from '@mui/material';
 import { theme } from 'styles/theme';
 import { routes } from 'routes';
-import { forwardRef, useState } from 'react';
+import { forwardRef } from 'react';
 
 
 function Router(props: { children?: React.ReactNode }) {
@@ -47,17 +48,10 @@ const Link = forwardRef<HTMLAnchorElement, RouterLinkProps>(function Link(
 
 function ListItemLink(props: IListItemLinkProps) {
   const { icon, primary, to } = props;
-  const [selectedIndex, setSelectedIndex] = useState(1);
-
-  const handleListItemClick = (
-    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
-    index: number,
-  ) => {
-    setSelectedIndex(index);
-  };
+  const location = useLocation();
 
   return (
-    <li>
+    <List disablePadding>
       <ListItemButton component={Link}
         to={to}
         sx={{
@@ -68,9 +62,13 @@ function ListItemLink(props: IListItemLinkProps) {
           pb: '12px',
           pl: '20px',
           pr: '20px',
+          '&.Mui-selected, &:hover': {
+            bgcolor: theme.palette.secondary.main,
+            color: theme.palette.primary.main,
+            borderRadius: '44px',
+          },
         }}
-        selected = {selectedIndex === 0}
-        onClick={(event: any) => handleListItemClick(event, 0)}
+        selected={to === location.pathname}
       >
         <ListItemIcon sx={{minWidth: '38px'}}>{icon}</ListItemIcon>
         <ListItemText primaryTypographyProps={{
@@ -82,7 +80,7 @@ function ListItemLink(props: IListItemLinkProps) {
         }}
         primary={primary} />
       </ListItemButton>
-    </li>
+    </List>
   );
 }
 
@@ -94,14 +92,6 @@ export const SideMenu: React.FC = () => {
           <List sx={{
             mr: '142px',
             width: 164,
-            '&& .Mui-selected, && .MuiButtonBase-root:hover': {
-              bgcolor: theme.palette.secondary.main,
-              color: theme.palette.primary.main,
-              borderRadius: '44px',
-              '& .MuiSvgIcon-root, & .MuiTypography-root': {
-                color: theme.palette.primary.main,
-              },
-            },
           }}
           >
             <ListItemLink to="/AllPhotos" primary="All photos" icon={<ImageOutlined />} />
