@@ -44,6 +44,7 @@ const UploadButton = ({nameBtn}: {nameBtn: string}): JSX.Element => {
         sx={{
           position: 'fixed',
           bottom: 40,
+          minWidth: 192,
           height: 40,
           borderRadius: '4px'}}
         onClick={handlerPick}
