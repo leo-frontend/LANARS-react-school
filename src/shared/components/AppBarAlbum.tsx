@@ -10,13 +10,20 @@ import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import CloseIcon from '@mui/icons-material/Close';
 
-import {useAppSelector} from '../hooks/redux_hooks';
+import {useAppDispatch, useAppSelector} from '../hooks/redux_hooks';
 import {AllPath} from '../constants/path';
 import {IAlbumAddPhoto} from '../interfaces/AlbumProps';
+import {getPhoto} from '../store/photoSlice';
 
 
 const AppBarAlbum = ({checkedPhotoId, setIsOpen, isOpen}: IAlbumAddPhoto): JSX.Element => {
+  const dispatch = useAppDispatch();
   const {album} = useAppSelector(state => state.album);
+
+  const handlerClick = ()=> {
+    dispatch(getPhoto([]));
+    setIsOpen(!isOpen);
+  };
 
   return (
     <AppBar position="sticky" color="inherit" sx={{boxShadow: 'none'}}>
@@ -64,7 +71,7 @@ const AppBarAlbum = ({checkedPhotoId, setIsOpen, isOpen}: IAlbumAddPhoto): JSX.E
               </Typography>
             </Box>
             <Stack direction="row" spacing={2}>
-              <IconButton onClick={()=> setIsOpen(!isOpen)} size="large" color="primary">
+              <IconButton onClick={()=> handlerClick()} size="large" color="primary">
                 <AddPhotoAlternateOutlinedIcon/>
               </IconButton>
               <IconButton size="large" color="primary">

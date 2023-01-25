@@ -56,21 +56,21 @@ const Album = (): JSX.Element => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [checkedPhoto, setCheckedPhoto] = useState<Record<number, boolean>>({});
   const isDisabled = Object.values(checkedPhoto).some(item => item);
-  const [isRender, setIsRender] = useState<boolean>(false);
-  const [arrayCheckedPhoto, setArrayCheckedPhoto] = useState(Object.entries(checkedPhoto)
+  const arrayCheckedPhoto = Object.entries(checkedPhoto)
     .map(item => item[1] && Number(item[0]))
-    .filter(item => item) as number[]);
-
+    .filter(item => item) as number[];
 
   useEffect(() => {
-    const selectedNewPhoto = photo.photos.reduce((acc, uploadPhoto) => {
-      if (uploadPhoto.isNew && uploadPhoto.id) {
-        return {...acc, [uploadPhoto.id]: true};
+    if(isOpen){
+      const selectedNewPhoto = photo.photos.reduce((acc, uploadPhoto) => {
+        if (uploadPhoto.isNew && uploadPhoto.id) {
+          return {...acc, [uploadPhoto.id]: true};
+        }
+        return {...acc};
+      }, {});
+      if (Object.keys(selectedNewPhoto).length !== 0) {
+        setCheckedPhoto(prevState => ({...prevState, ...selectedNewPhoto}));
       }
-      return {...acc};
-    }, {});
-    if (Object.keys(selectedNewPhoto).length !== 0) {
-      setCheckedPhoto(prevState => ({...prevState, ...selectedNewPhoto}));
     }
   }, [photo]);
 
@@ -82,8 +82,7 @@ const Album = (): JSX.Element => {
   }, []);
 
   useEffect(() => {
-    setArrayCheckedPhoto([]);
-    if(album.length === 1) {
+    if (album.length === 1) {
       dispatch(getPhoto(album[0].photos));
     }
   }, [album]);
@@ -92,7 +91,7 @@ const Album = (): JSX.Element => {
   const addPhotoToAlbum = () => {
     const newPhoto = {...album[0], photos: [...album[0].photos, ...arrayCheckedPhoto], id: Number(albumId)};
     dispatch(updateAlbum(newPhoto));
-    setIsRender(!isRender);
+    setCheckedPhoto({});
     setIsOpen(!isOpen);
   };
 
