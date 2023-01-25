@@ -11,17 +11,18 @@ import {
   ImageListItem,
   Slide,
   styled,
-  Typography
+  Typography,
 } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
+import {TransitionProps} from '@mui/material/transitions';
 
 import {clearAlbumState, getAlbum, updateAlbum} from '../shared/store/albumSlice';
 import {useAppDispatch, useAppSelector} from '../shared/hooks/redux_hooks';
 import AppBarAlbum from '../shared/components/AppBarAlbum';
 import {colors} from '../styles/variables';
 import {clearPhotoState, getPhoto} from '../shared/store/photoSlice';
-import CloseIcon from "@mui/icons-material/Close";
-import UploadButton from "../shared/components/UploadButton/UploadButton";
-import {TransitionProps} from "@mui/material/transitions";
+import UploadButton from '../shared/components/UploadButton/UploadButton';
+
 
 const MyImageListItem = styled(ImageListItem)(({selected}: { selected: boolean }) => ({
   borderRadius: 8,
@@ -58,7 +59,7 @@ const Album = (): JSX.Element => {
   const [isRender, setIsRender] = useState<boolean>(false);
   const [arrayCheckedPhoto, setArrayCheckedPhoto] = useState(Object.entries(checkedPhoto)
     .map(item => item[1] && Number(item[0]))
-    .filter(item => item) as number[])
+    .filter(item => item) as number[]);
 
 
   useEffect(() => {
@@ -81,19 +82,19 @@ const Album = (): JSX.Element => {
   }, []);
 
   useEffect(() => {
-    setArrayCheckedPhoto([])
-    album.length === 1 && dispatch(getPhoto(album[0].photos))
-
+    setArrayCheckedPhoto([]);
+    if(album.length === 1) {
+      dispatch(getPhoto(album[0].photos));
+    }
   }, [album]);
 
 
   const addPhotoToAlbum = () => {
-    const newPhoto = {...album[0], photos: [...album[0].photos, ...arrayCheckedPhoto], id: Number(albumId)}
-    dispatch(updateAlbum(newPhoto))
-
-    setIsRender(!isRender)
-    setIsOpen(!isOpen)
-  }
+    const newPhoto = {...album[0], photos: [...album[0].photos, ...arrayCheckedPhoto], id: Number(albumId)};
+    dispatch(updateAlbum(newPhoto));
+    setIsRender(!isRender);
+    setIsOpen(!isOpen);
+  };
 
   const handlerClick = (photoId: number) =>
     setCheckedPhoto((prevState) => ({...prevState, [photoId]: !prevState[photoId]}));
@@ -132,8 +133,9 @@ const Album = (): JSX.Element => {
           transform: 'translate(-50%, -50%)',
           width: '100%',
           height: '100%',
-          bgcolor: 'background.paper'
-        }}>
+          bgcolor: 'background.paper',
+        }}
+        >
           <Box sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', m: 1, p: '0 32px'}}>
             <Box sx={{display: 'flex', alignItems: 'center'}}>
               <IconButton onClick={() => setIsOpen(!isOpen)} size="large" edge="start" color="inherit">
