@@ -4,10 +4,11 @@ import {Link} from 'react-router-dom';
 import {MenuItem, MenuList, styled} from '@mui/material';
 import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';
 import PhotoAlbumOutlinedIcon from '@mui/icons-material/PhotoAlbumOutlined';
+import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 
 import {AllPath} from '../constants/path';
 import {colors} from '../../styles/variables';
-import StarBorderOutlinedIcon from "@mui/icons-material/StarBorderOutlined";
+
 
 
 const SideMenuBtn = styled(MenuItem)(() => ({
