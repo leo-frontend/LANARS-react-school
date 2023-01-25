@@ -7,6 +7,7 @@ import PhotoAlbumOutlinedIcon from '@mui/icons-material/PhotoAlbumOutlined';
 
 import {AllPath} from '../constants/path';
 import {colors} from '../../styles/variables';
+import StarBorderOutlinedIcon from "@mui/icons-material/StarBorderOutlined";
 
 
 const SideMenuBtn = styled(MenuItem)(() => ({
@@ -43,6 +44,15 @@ const SideMenu = (): JSX.Element => {
         >
           <PhotoAlbumOutlinedIcon sx={{p: '0 8px 0 16px'}}/>
           Albums
+        </SideMenuBtn>
+      </Link>
+      <Link style={{display: 'flex', textDecoration: 'none', color: 'inherit'}} to={AllPath.FAVORITES}>
+        <SideMenuBtn
+          selected={route === AllPath.FAVORITES && true}
+          onClick={() => setRoute(AllPath.FAVORITES)}
+        >
+          <StarBorderOutlinedIcon sx={{p: '0 8px 0 16px'}}/>
+          Favorites
         </SideMenuBtn>
       </Link>
     </MenuList>
