@@ -12,6 +12,8 @@ export interface IPhotoState {
   photos: IPhoto[];
   loading: keyof typeof Status;
   error: string;
+  checkedPhoto: number[];
+  checked: Record<number, boolean>,
 }
 
 export interface IAlbumState {
