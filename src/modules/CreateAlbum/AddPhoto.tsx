@@ -16,12 +16,12 @@ import {
 import CloseIcon from '@mui/icons-material/Close';
 import {TransitionProps} from '@mui/material/transitions';
 
-import {useAppDispatch, useAppSelector} from '../hooks/redux_hooks';
-import {clearPhotoState, getPhoto} from '../store/photoSlice';
-import UploadButton from './UploadButton/UploadButton';
+import {useAppDispatch, useAppSelector} from '../../shared/hooks/redux_hooks';
+import {clearPhotoState, getPhoto} from '../../shared/store/photoSlice';
+import UploadButton from '../../shared/components/UploadButton/UploadButton';
 import {colors} from '../../styles/variables';
-import {IAlbumsProps} from '../interfaces/AlbumProps';
-import {AllPath} from '../constants/path';
+import {IAlbumsProps} from '../../shared/interfaces/AlbumProps';
+import {AllPath} from '../../shared/constants/path';
 
 
 const MyImageListItem = styled(ImageListItem)(({selected}: { selected: boolean }) => ({

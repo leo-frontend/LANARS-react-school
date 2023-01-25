@@ -6,12 +6,12 @@ import {ThemeProvider} from '@mui/material';
 import {theme} from '../styles/theme';
 import {AllPath} from '../shared/constants/path';
 import Photos from '../modules/Photos';
-import Albums from '../modules/Albums';
+import Albums from '../modules/Albums/Albums';
 import Favorites from '../modules/Favorites';
 import Layout from '../shared/components/Layout';
 import NotFoundPage from '../modules/NotFoundPage';
-import Album from '../modules/Album';
-import CreateAlbum from '../modules/CreateAlbum';
+import Album from '../modules/Album/Album';
+import CreateAlbum from '../modules/CreateAlbum/CreateAlbum';
 
 
 

@@ -10,10 +10,10 @@ import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import CloseIcon from '@mui/icons-material/Close';
 
-import {useAppDispatch, useAppSelector} from '../hooks/redux_hooks';
-import {AllPath} from '../constants/path';
-import {IAlbumAddPhoto} from '../interfaces/AlbumProps';
-import {getPhoto} from '../store/photoSlice';
+import {useAppDispatch, useAppSelector} from '../../shared/hooks/redux_hooks';
+import {AllPath} from '../../shared/constants/path';
+import {IAlbumAddPhoto} from '../../shared/interfaces/AlbumProps';
+import {getPhoto} from '../../shared/store/photoSlice';
 
 
 const AppBarAlbum = ({checkedPhotoId, setIsOpen, isOpen}: IAlbumAddPhoto): JSX.Element => {
