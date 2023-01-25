@@ -77,7 +77,7 @@ const photoSlice = createSlice({
     builder
       .addCase(addPhoto.fulfilled, (state, action) => {
         state.loading = 'SUCCEEDED';
-        state.photos.push(action.payload);
+        state.photos.push({...action.payload, isNew: true});
       })
       .addCase(updatePhoto.fulfilled, (state, action) => {
         state.loading = 'SUCCEEDED';
