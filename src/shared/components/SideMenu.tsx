@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Link} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 import {MenuItem, MenuList, styled} from '@mui/material';
 import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';
@@ -8,7 +8,6 @@ import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 
 import {AllPath} from '../constants/path';
 import {colors} from '../../styles/variables';
-
 
 
 const SideMenuBtn = styled(MenuItem)(() => ({
@@ -26,36 +25,36 @@ const SideMenuBtn = styled(MenuItem)(() => ({
 
 
 const SideMenu = (): JSX.Element => {
+  const navigate = useNavigate();
   const [route, setRoute] = useState<string>(AllPath.ALL_PHOTO);
+
+  const handlerClick = (path: string) => {
+    setRoute(path);
+    navigate(path);
+  }
   return (
     <MenuList sx={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', p: 4}}>
-      <Link style={{display: 'flex', textDecoration: 'none', color: 'inherit'}}  to="/">
-        <SideMenuBtn
-          selected={route === AllPath.ALL_PHOTO && true}
-          onClick={() => setRoute(AllPath.ALL_PHOTO)}
-        >
-          <InsertPhotoOutlinedIcon sx={{p: '0 8px 0 16px'}}/>
-          All photos
-        </SideMenuBtn>
-      </Link>
-      <Link style={{display: 'flex', textDecoration: 'none', color: 'inherit'}} to={AllPath.ALBUM}>
-        <SideMenuBtn
-          selected={route === AllPath.ALBUM && true}
-          onClick={() => setRoute(AllPath.ALBUM)}
-        >
-          <PhotoAlbumOutlinedIcon sx={{p: '0 8px 0 16px'}}/>
-          Albums
-        </SideMenuBtn>
-      </Link>
-      <Link style={{display: 'flex', textDecoration: 'none', color: 'inherit'}} to={AllPath.FAVORITES}>
-        <SideMenuBtn
-          selected={route === AllPath.FAVORITES && true}
-          onClick={() => setRoute(AllPath.FAVORITES)}
-        >
-          <StarBorderOutlinedIcon sx={{p: '0 8px 0 16px'}}/>
-          Favorites
-        </SideMenuBtn>
-      </Link>
+      <SideMenuBtn
+        selected={route === AllPath.ALL_PHOTO && true}
+        onClick={() => handlerClick(AllPath.ALL_PHOTO)}
+      >
+        <InsertPhotoOutlinedIcon sx={{p: '0 8px 0 16px'}}/>
+        All photos
+      </SideMenuBtn>
+      <SideMenuBtn
+        selected={route === AllPath.ALBUM && true}
+        onClick={() => handlerClick(AllPath.ALBUM)}
+      >
+        <PhotoAlbumOutlinedIcon sx={{p: '0 8px 0 16px'}}/>
+        Albums
+      </SideMenuBtn>
+      <SideMenuBtn
+        selected={route === AllPath.FAVORITES && true}
+        onClick={() => handlerClick(AllPath.FAVORITES)}
+      >
+        <StarBorderOutlinedIcon sx={{p: '0 8px 0 16px'}}/>
+        Favorites
+      </SideMenuBtn>
     </MenuList>
   );
 };
