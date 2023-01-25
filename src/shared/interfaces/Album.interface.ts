@@ -3,7 +3,7 @@ import {PhotoInterface} from './Photo.interface'
 export interface AlbumInterface {
   title: string;
   description: string;
-  photos: PhotoInterface[];
+  photos: number[];
   date: number;
-  id?: number;
+  id: number;
 }

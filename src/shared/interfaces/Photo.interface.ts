@@ -4,5 +4,5 @@ export interface PhotoInterface {
   date: number;
   size: number;
   type: string;
-  id?: number;
+  id: number;
 }
