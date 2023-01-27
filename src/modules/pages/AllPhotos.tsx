@@ -4,6 +4,7 @@ import ImageListItem from '@mui/material/ImageListItem';
 import NoPhotos from './NoPhotos';
 import { useAppDispatch, useAppSelector } from 'shared/hooks';
 import { getPhoto } from 'shared/store/reducers/photoReducerSlice';
+import FabUploadPhoto from 'modules/components/FabUploadPhoto';
 
 export const AllPhotos: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -24,6 +25,7 @@ export const AllPhotos: React.FC = () => {
               // eslint-disable-next-line @typescript-eslint/naming-convention
               '& .MuiImageListItem-img': {
                 width: 142,
+                height: 142,
                 borderRadius: 8,
               }}}
           >
@@ -34,6 +36,7 @@ export const AllPhotos: React.FC = () => {
               loading="lazy"/>
           </ImageListItem>
         ))}
+        <FabUploadPhoto />
       </ImageList> : <NoPhotos />
   );
 };

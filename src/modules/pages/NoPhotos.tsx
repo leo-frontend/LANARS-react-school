@@ -1,5 +1,6 @@
 import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';
 import { Box, Typography } from '@mui/material';
+import FabUploadPhoto from 'modules/components/FabUploadPhoto';
 import { theme } from 'styles/theme';
 
 const NoPhotos: React.FC = () => {
@@ -23,6 +24,7 @@ const NoPhotos: React.FC = () => {
       >
         There are no photos yet. Please click <b>Upload photo</b> to add
       </Typography>
+      <FabUploadPhoto />
     </Box>
   );
 };
